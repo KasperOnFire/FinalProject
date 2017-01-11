@@ -1,8 +1,5 @@
 package Data;
 
-
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,7 +11,7 @@ import java.sql.SQLException;
         //Constants
         private static final String IP	     = "localhost";
         private static final int    PORT     = 3306;
-        public static final String DATABASE  = "skole_mysql_web";
+        public static final String DATABASE  = "collection";
         private static final String USERNAME = "root";
         private static final String PASSWORD = "root";	     	
 

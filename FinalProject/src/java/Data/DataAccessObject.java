@@ -72,9 +72,10 @@ public class DataAccessObject {
         return user;    
     }
     
-    public User registerUser(String username, String password, String email, int phoneNo) throws SQLException, UnsupportedEncodingException{               
+    public User registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
         pass.getSaltString();
+        System.out.println("Test add user");
         String sql = "INSERT INTO user VALUES ('" + username + "', '" + email + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "')";
         User user = null;
         makeTable(username);
@@ -92,6 +93,7 @@ public class DataAccessObject {
         String sqlMusic = "CREATE TABLE `collection`.`" + username + "_music` (`album` VARCHAR(255), `artist` VARCHAR(255), `image` VARCHAR(255), `year` int(255);";
         //String sqlMovie = "CREATE TABLE `collection`.`" + username + "_movie` ( )";
         try{
+            System.out.println("BLIN!");
             stmt.executeUpdate(sqlMusic);
         }catch(Exception e){
             System.out.println("Error making user_music_table : " + e);
