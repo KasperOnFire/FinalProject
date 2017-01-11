@@ -1,5 +1,5 @@
 body {
-    background-color: #264653;
+    background-color: #696D7D;
 }
 
 .top-div {
@@ -12,11 +12,11 @@ body {
 }
 
 h1 {
-    color: #E9C46A;
+    color: #CDC6A5;
 }
 
 h1 small {
-    color: #F4A261;
+    color: #8D9F87;
 }
 
 input {
@@ -25,15 +25,16 @@ input {
 
 .login {
     width: 25%;
-    height: 45%;
+    height: fit-content;
     position: absolute;
+    display: inline-block;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
     padding: 20px;
-    background-color: #F4A261;
+    background-color: #6F9283;
     border-radius: 15px;
     color: black;
 }
