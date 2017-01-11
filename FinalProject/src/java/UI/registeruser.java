@@ -13,27 +13,42 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author david
- */
+import User.RegUser;
+
 @WebServlet(name = "registeruser", urlPatterns = {"/registeruser"})
 public class registeruser extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    RegUser reguser = new RegUser();
+    private boolean userAdded;
+    private String username;
+    private String password;
+    private String email;
+    private int phoneNo;
+
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+
+            try{
+                username = request.getParameter("username");
+                password = request.getParameter("password");
+                email = request.getParameter("email");
+                if(true){ //reguser.usernameTaken(username) == true
+                    System.out.println("Adding table test!");
+                    reguser.addUser("davidcarl", "123", "david.martin.carl@gmail.com");
+                }
+//                }else{
+//                    if(regUser.usernameTaken(username) == true){
+//                        regUser.addUser(username, password1, email, phoneNo);
+//                        userAdded = true;
+//                    }else{
+//                        userAdded = false;    
+//                    }
+            }catch(Exception e){
+            }
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
