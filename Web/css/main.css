@@ -5,7 +5,7 @@ input {
 .login {
     width: 25%;
     margin: auto;
-    margin-top: 25%;
+    margin-top: 15%;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -16,6 +16,15 @@ input {
 body {
     background-color: #984b43;
 }
+.top-div{
+    width: 80%;
+    background-color: green;
+    margin: auto;
+    margin-top: 0;
+}
+.main-div{
+    width: 80%;
+}
 
 .login a{
     display: block;
@@ -23,4 +32,16 @@ body {
     margin-top: 10px;
     font-size: 10px;
     color: black;
+}
+
+.footer{
+    width: 80%;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    background-color: blue;
+    text-align: center;
 }
