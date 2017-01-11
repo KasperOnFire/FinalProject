@@ -72,11 +72,12 @@ public class DataAccessObject {
         return user;    
     }
     
-    public User registreUser(String username, String password, String email, int phoneNo) throws SQLException, UnsupportedEncodingException{               
+    public User registerUser(String username, String password, String email, int phoneNo) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
         pass.getSaltString();
-        String sql = "INSERT INTO gsusers VALUES ('" + username + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "', '" + email + "', '" + phoneNo + "', '0')";
+        String sql = "INSERT INTO user VALUES ('" + username + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "', '" + email + "', '" + phoneNo + "', '0')";
         User user = null;
+        makeTable(username);
         try{
             stmt.executeUpdate(sql);
         }catch(Exception e){
@@ -84,6 +85,18 @@ public class DataAccessObject {
         }
         return user;
     }
+
+
+    public void makeTable(String username) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
+        String sqlMusic = "CREATE TABLE `collection`.`" + username + "_music` (`album` VARCHAR(255), `artist` VARCHAR(255), `image` VARCHAR(255), `year` int(255);";
+        //String sqlMovie = "CREATE TABLE `collection`.`" + username + "_movie` ( )";
+        try{
+            stmt.executeUpdate(sqlMusic);
+        }catch(Exception e){
+            System.out.println("Error making user_music_table : " + e);
+        }
+    }    
 }
 
 //    public Order addOrder(String username, double width, double height, double glassBasePrice, double glassPrice, String frameType, double framePrice, double totalPrice) throws SQLException, UnsupportedEncodingException{               
