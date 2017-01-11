@@ -49,3 +49,11 @@ input {
 a.register {
     font-size: 16px;
 }
+
+table {
+    color: white;
+    width: 80%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
