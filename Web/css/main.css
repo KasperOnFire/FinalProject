@@ -1,3 +1,16 @@
+body {
+    background-color: #264653;
+}
+
+.top-div {
+    width: 80%;
+    margin: auto;
+}
+
+.main-div {
+    width: 80%;
+}
+
 h1 {
     color: #E9C46A;
 }
@@ -12,12 +25,16 @@ input {
 
 .login {
     width: 25%;
+    height: 45%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
-    margin-top: 15%;
     padding: 20px;
     background-color: #F4A261;
     border-radius: 15px;
-    box-shadow: inset 0 0 10px 5px rgba(0, 0, 0, 0.7);
     color: black;
 }
 
@@ -31,17 +48,4 @@ input {
 
 a.register {
     font-size: 16px;
-}
-
-body {
-    background-color: #264653;
-}
-
-.top-div {
-    width: 80%;
-    margin: auto;
-}
-
-.main-div {
-    width: 80%;
 }
