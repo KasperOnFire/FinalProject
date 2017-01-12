@@ -12,7 +12,9 @@ public class RegUser {
 
     public RegUser() {
         try {
+            System.out.println("DAO = NEW");
             DAO = new DataAccessObject();
+            System.out.println("DAO = OLD");
         } catch (Exception e) {
             System.out.println("Blin : " + e);
         }
@@ -26,8 +28,8 @@ public class RegUser {
             System.out.println("Test2");
             DAO.registerUser(username, password, email);
             System.out.println("Test3");
-        } catch (SQLException ex) {
-            Logger.getLogger(RegUser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println("ERROR IN RegUser : " + e);
         }
     }
     
