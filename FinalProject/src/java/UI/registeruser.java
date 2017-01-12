@@ -33,8 +33,8 @@ public class registeruser extends HttpServlet {
                 email = request.getParameter("email");
                 if(true){ //reguser.usernameTaken(username) == true
                     System.out.println("add user");
-                    //reguser.addUser(username, password, email);
-                    am.addMusic(1, "hej", "nej", "3", 2017, "blin", 1000);
+                    reguser.addUser(username, password, email);
+                    //am.addMusic(1, "hej", "nej", "3", 2017, "blin", 1000);
                 }
 //                }else{
 //                    if(regUser.usernameTaken(username) == true){
