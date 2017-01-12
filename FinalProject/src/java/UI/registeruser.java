@@ -32,7 +32,7 @@ public class registeruser extends HttpServlet {
                 email = request.getParameter("email");
                 if(true){ //reguser.usernameTaken(username) == true
                     System.out.println("Adding table test!");
-                    reguser.addUser("davidcarl", "123", "david.martin.carl@gmail.com");
+                    reguser.addUser(username, password, email);
                 }
 //                }else{
 //                    if(regUser.usernameTaken(username) == true){
