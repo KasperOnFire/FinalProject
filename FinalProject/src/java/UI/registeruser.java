@@ -32,9 +32,9 @@ public class registeruser extends HttpServlet {
                 password = request.getParameter("password");
                 email = request.getParameter("email");
                 if(true){ //reguser.usernameTaken(username) == true
-                    System.out.println("Adding table test!");
+                    System.out.println("add user");
                     reguser.addUser(username, password, email);
-                    am.addMusic(1, "hej", "nej", "3", 2017, "blin", 1000);
+                    //am.addMusic(1, "hej", "nej", "3", 2017, "blin", 1000);
                 }
 //                }else{
 //                    if(regUser.usernameTaken(username) == true){
@@ -44,6 +44,7 @@ public class registeruser extends HttpServlet {
 //                        userAdded = false;    
 //                    }
             }catch(Exception e){
+                out.println("Somethings wrong! : " + e);
             }
 
             out.println("<!DOCTYPE html>");

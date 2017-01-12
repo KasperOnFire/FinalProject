@@ -69,14 +69,17 @@ public class DataAccessObject {
     }
     
     public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
+        System.out.println("blin");
         Statement stmt = conn.getConnection().createStatement();
+        System.out.println("blin?");
         pass.getSaltString();
         System.out.println("Test add user");
-        String sql = "INSERT INTO user VALUES ('" + username + "', '" + email + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "')";
+        String sql = "INSERT INTO user (username, email, password, salt) VALUES ('" + username + "', '" + email + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "')";
         try{
             stmt.executeUpdate(sql);
+            System.out.println("User added! Username : " + username);
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println("ERROR : " + e);
         }
     }
     

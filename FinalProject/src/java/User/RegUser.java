@@ -9,14 +9,17 @@ import java.util.logging.Logger;
 public class RegUser {
 
     DataAccessObject DAO = null;
-      
+
     public RegUser() {
         try {
             DAO = new DataAccessObject();
-        } catch (Exception ex) {
-        }    
+        } catch (Exception e) {
+            System.out.println("Blin : " + e);
+        }
     }
+      
 
+    
     public void addUser(String username, String password, String email) throws UnsupportedEncodingException{
         System.out.println("Test1");
         try {
