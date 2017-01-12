@@ -1,7 +1,5 @@
 package User;
 
-
-
 public class User {
 
     private String Username;

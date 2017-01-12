@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import User.User;
 import User.Password;
+import Collection.Music;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,6 +19,7 @@ import java.util.Random;
 public class DataAccessObject {
 
     private final DBConnector conn;
+    Statement stmt;
     Password pass = new Password();
     
     public DataAccessObject() throws Exception {
@@ -46,13 +48,8 @@ public class DataAccessObject {
 //        return product;    
 //    }
 
-    public User getUserByName(String username){
-        Statement stmt = null;
-        try {
-            stmt = conn.getConnection().createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public User getUserByName(String username) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
         String sql = "select * from gsusers where username = '" + username + "';";
         User user = null;
         try {
@@ -66,28 +63,32 @@ public class DataAccessObject {
                 
                 user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, phoneNoRetrieved);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
         }
         return user;    
     }
     
-    public User registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
+    public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
         pass.getSaltString();
         System.out.println("Test add user");
         String sql = "INSERT INTO user VALUES ('" + username + "', '" + email + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "')";
-        User user = null;
         try{
             stmt.executeUpdate(sql);
         }catch(Exception e){
             System.out.println(e);
         }
-        return user;
     }
     
-    //add music add!
-
+    public void addSong(int UID, String artist, String album, String image, int year, String song, int time) throws SQLException{
+        stmt = conn.getConnection().createStatement();
+        String sql = "INSERT INTO music VALUES ('" + UID + "','" + artist + "','" + album + "','" + image + "','" + year + "','" + song + "','" + time + "')";
+        try {
+            stmt.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
 //    public void makeTable(String username) throws SQLException{
 //        Statement stmt = conn.getConnection().createStatement();

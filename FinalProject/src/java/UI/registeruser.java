@@ -8,18 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Collection.AddMusic;
 import User.RegUser;
 
 @WebServlet(name = "registeruser", urlPatterns = {"/registeruser"})
 public class registeruser extends HttpServlet {
 
     RegUser reguser = new RegUser();
+    AddMusic am = new AddMusic();
+    
     private boolean userAdded;
     private String username;
     private String password;
     private String email;
-    private int phoneNo;
-
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,6 +34,7 @@ public class registeruser extends HttpServlet {
                 if(true){ //reguser.usernameTaken(username) == true
                     System.out.println("Adding table test!");
                     reguser.addUser(username, password, email);
+                    am.addMusic(1, "hej", "nej", "3", 2017, "blin", 1000);
                 }
 //                }else{
 //                    if(regUser.usernameTaken(username) == true){
@@ -50,6 +52,7 @@ public class registeruser extends HttpServlet {
             out.println("<title>Servlet registeruser</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("Username: " + username);
             out.println("<h1>Servlet registeruser at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
