@@ -29,12 +29,12 @@ public class registeruser extends HttpServlet {
 
             try{
                 username = request.getParameter("username");
-                password = request.getParameter("password");
+                password = request.getParameter("pw");
                 email = request.getParameter("email");
-                if(true){ //reguser.usernameTaken(username) == true
-                    System.out.println("add user");
+                if(reguser.usernameTaken(username) == false){
                     reguser.addUser(username, password, email);
-                    //am.addMusic(1, "hej", "nej", "3", 2017, "blin", 1000);
+                }else{
+                    out.println("<h1>Username already taken! Fix this with javascript!</h1>");
                 }
 //                }else{
 //                    if(regUser.usernameTaken(username) == true){

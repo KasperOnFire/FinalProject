@@ -70,15 +70,10 @@ public class DataAccessObject {
     
     public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
-        String salt = pass.getSaltString();
-        //String sql = "INSERT INTO user (username, email, password, salt) VALUES ('" + username + "','" + email + "','" + pass.get_SHA_512_SecurePassword(password, passalt) + "','" + passalt + "')"; //NULLPOINTER HER AF EN ELLER ANDEN GRUND!
-        String sql_info = "('" + username + "','" + email + "','" + password + "','" + salt + "')";
-        String sql = "INSERT INTO user (username, email, password, salt) VALUES " + sql_info;// ('" + username + "','" + email + "','" + pass.get_SHA_512_SecurePassword(password, pass.getSaltString())  + "','" + pass.getSaltString() + "')";
-        System.out.println("Test add user");
+        pass.getSaltString();
+        String sql = "INSERT INTO user (username, email, password, salt) VALUES ('" + username + "','" + email + "','" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "','" + pass.getPasswordSalt() + "')"; //NULLPOINTER HER AF EN ELLER ANDEN GRUND!
         try{
-            System.out.println("before user is added!");
             stmt.executeUpdate(sql);
-            System.out.println("User added! Username : " + username);
         }catch(Exception e){
             System.out.println("ERROR : " + e);
         }
