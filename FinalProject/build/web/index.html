@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Final Project">
+    <meta name="author" content="Tjalfe Møller, David Carl & Kasper Ravn Breindal">
+    <link rel="icon" href="img/favicon.png">
+    <title>MusicProject</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container main-div">
+        <div class="top-div">
+            <h1 class="text-center main-header">YourMusic!<small> for managing your shit.</small></h1>
+        </div>
+        <div class="login">
+            <form action="submitLogin" method="POST">
+                <p class="text-center">Username</p>
+                <input type="text" name="username" placeholder="Username" class="center-block"><br>
+                <p class="text-center">Password</p>
+                <input type="password" name="pw" placeholder="********" class="center-block"><br>
+                <input type="submit" name="Login!" value="login" class="btn btn-default center-block">
+            </form>
+            <a href="Register.html" class="text-center register">Not a user? Register here!</a>
+            <a href="forgot.html" class="text-center">Forgot your password?</a>
+        </div>
+    </div>
+</body>
+
 </html>

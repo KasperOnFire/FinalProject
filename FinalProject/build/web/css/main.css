@@ -1,0 +1,60 @@
+body {
+    background-color: #696D7D;
+}
+
+.top-div {
+    width: 80%;
+    margin: auto;
+}
+
+.main-div {
+    width: 80%;
+}
+
+h1 {
+    color: #CDC6A5;
+}
+
+h1 small {
+    color: #8D9F87;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.login {
+    width: 25%;
+    height: fit-content;
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    background-color: #6F9283;
+    border-radius: 15px;
+    color: black;
+}
+
+.login a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: black;
+}
+
+a.register {
+    font-size: 16px;
+}
+
+table {
+    color: white;
+    width: 80%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}

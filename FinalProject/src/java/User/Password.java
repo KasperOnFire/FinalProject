@@ -37,7 +37,7 @@ public class Password {
              generatedPassword = sb.toString();
             } 
            catch (NoSuchAlgorithmException e){
-            e.printStackTrace();
+               System.out.println("ERROR IN GENPASS : " + e);
            }
         return generatedPassword;
     }

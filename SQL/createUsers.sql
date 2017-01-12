@@ -1,4 +1,5 @@
 CREATE TABLE `collection`.`user` (
+  `UID` int(255) auto_increment key,
   `username` VARCHAR(16) NOT NULL,
   `email` VARCHAR(255) NULL,
   `password` VARCHAR(32) NOT NULL,

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import User.User;
 import User.Password;
+import Collection.Music;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,6 +19,7 @@ import java.util.Random;
 public class DataAccessObject {
 
     private final DBConnector conn;
+    Statement stmt;
     Password pass = new Password();
     
     public DataAccessObject() throws Exception {
@@ -46,13 +48,8 @@ public class DataAccessObject {
 //        return product;    
 //    }
 
-    public User getUserByName(String username){
-        Statement stmt = null;
-        try {
-            stmt = conn.getConnection().createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public User getUserByName(String username) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
         String sql = "select * from gsusers where username = '" + username + "';";
         User user = null;
         try {
@@ -66,39 +63,48 @@ public class DataAccessObject {
                 
                 user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, phoneNoRetrieved);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
         }
         return user;    
     }
     
-    public User registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
+    public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
-        pass.getSaltString();
+        String salt = pass.getSaltString();
+        //String sql = "INSERT INTO user (username, email, password, salt) VALUES ('" + username + "','" + email + "','" + pass.get_SHA_512_SecurePassword(password, passalt) + "','" + passalt + "')"; //NULLPOINTER HER AF EN ELLER ANDEN GRUND!
+        String sql_info = "('" + username + "','" + email + "','" + password + "','" + salt + "')";
+        String sql = "INSERT INTO user (username, email, password, salt) VALUES " + sql_info;// ('" + username + "','" + email + "','" + pass.get_SHA_512_SecurePassword(password, pass.getSaltString())  + "','" + pass.getSaltString() + "')";
         System.out.println("Test add user");
-        String sql = "INSERT INTO user VALUES ('" + username + "', '" + email + "', '" + pass.get_SHA_512_SecurePassword(password, pass.getPasswordSalt()) + "', '" + pass.getPasswordSalt() + "')";
-        User user = null;
-        makeTable(username);
         try{
+            System.out.println("before user is added!");
             stmt.executeUpdate(sql);
+            System.out.println("User added! Username : " + username);
         }catch(Exception e){
+            System.out.println("ERROR : " + e);
+        }
+    }
+    
+    public void addSong(int UID, String artist, String album, String image, int year, String song, int time) throws SQLException{
+        stmt = conn.getConnection().createStatement();
+        String sql = "INSERT INTO music VALUES ('" + UID + "','" + artist + "','" + album + "','" + image + "','" + year + "','" + song + "','" + time + "')";
+        try {
+            stmt.executeUpdate(sql);
+        } catch (Exception e) {
             System.out.println(e);
         }
-        return user;
     }
 
-
-    public void makeTable(String username) throws SQLException{
-        Statement stmt = conn.getConnection().createStatement();
-        String sqlMusic = "CREATE TABLE `collection`.`" + username + "_music` (`album` VARCHAR(255), `artist` VARCHAR(255), `image` VARCHAR(255), `year` int(255);";
-        //String sqlMovie = "CREATE TABLE `collection`.`" + username + "_movie` ( )";
-        try{
-            System.out.println("BLIN!");
-            stmt.executeUpdate(sqlMusic);
-        }catch(Exception e){
-            System.out.println("Error making user_music_table : " + e);
-        }
-    }    
+//    public void makeTable(String username) throws SQLException{
+//        Statement stmt = conn.getConnection().createStatement();
+//        String sqlMusic = "CREATE TABLE `collection`.`" + username + "_music` (`album` VARCHAR(255), `artist` VARCHAR(255), `image` VARCHAR(255), `year` int(255);";
+//        //String sqlMovie = "CREATE TABLE `collection`.`" + username + "_movie` ( )";
+//        try{
+//            System.out.println("BLIN!");
+//            stmt.executeUpdate(sqlMusic);
+//        }catch(Exception e){
+//            System.out.println("Error making user_music_table : " + e);
+//        }
+//    }    
 }
 
 //    public Order addOrder(String username, double width, double height, double glassBasePrice, double glassPrice, String frameType, double framePrice, double totalPrice) throws SQLException, UnsupportedEncodingException{               
