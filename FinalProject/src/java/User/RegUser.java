@@ -3,8 +3,6 @@ package User;
 import Data.DataAccessObject;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class RegUser {
 
@@ -28,16 +26,12 @@ public class RegUser {
             System.out.println("Test2");
             DAO.registerUser(username, password, email);
             System.out.println("Test3");
-        } catch (Exception e) {
+        } catch (UnsupportedEncodingException | SQLException e) {
             System.out.println("ERROR IN RegUser : " + e);
         }
     }
     
     public boolean usernameTaken(String username) throws SQLException{
-        if(DAO.getUserByName(username) == null){
-            return true;
-        }else{
-            return false;
-        }
+        return DAO.getUserByName(username) == null;
     }    
 }
