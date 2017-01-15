@@ -11,6 +11,7 @@
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/collection.css">
 </head>
 
 <body>
@@ -19,20 +20,122 @@
             <h1 class="text-center main-header">YourMusic!<small> for managing your shit.</small></h1>
         </div>
         <div class="gallery">
+            <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
             <div class="img">
-                <a target="_blank" href=""><img></a>
-                <div class="desc"></div>
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
             </div>
             <div class="img">
-                <a target="_blank" href=""><img></a>
-                <div class="desc"></div>
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
             </div>
             <div class="img">
-                <a target="_blank" href=""><img></a>
-                <div class="desc"></div>
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="">Dark Side of the Moon</a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href="error.html"><img src="img/darkside.jpg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
+                    <a class="albumName" href="error.html" target="_blank">Dark Side of the Moon</a>
+                </div>
             </div>
         </div>
     </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script>
+        /* klasse fucking jquery*/
+        $(function () {
+            var albums = $("div.img").length
+            $("small.totalAlbums").replaceWith("<small>" + albums + "</small>");
+        });
+    </script>
+    <script>
+        $(function () {
+            $(".desc").each(function () {
+                var artistName = jQuery(this).find(".artistName").text;
+                var artistLink = "http://last.fm/music/" + artistName.replace(/ /g, "+");
+                $(".artistName").attr("href", artistLink);
+
+                var albumName = jQuery(this).find(".albumName").text;
+                var albumLink = artistLink + "/" + albumName.replace(/ /g, "+");
+                $(".albumName").attr("href", albumLink);
+            })
+        })
+    </script>
 </body>
 
 </html>

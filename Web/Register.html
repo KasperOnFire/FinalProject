@@ -27,21 +27,21 @@
                 <p class="text-center">Password</p>
                 <input type="password" id="password" required="required" name="pw" placeholder="********" class="center-block"><br>
                 <p class="text-center">Confim password</p>
-                <input type="password" id="password_confirm" required="required" name="pw2" placeholder="********" class="center-block"><br>
-                <script language='javascript' type='text/javascript'>
-                    function check(input) {
-                        if (input.value != document.getElementById('password').value) {
-                            input.setCustomValidity('Password Must be Matching.');
-                        } else {
-                            // input is valid -- reset the error message
-                            input.setCustomValidity('');
-                        }
-                    }
-                </script>
+                <input type="password" id="password" required="required" name="pw2" placeholder="********" class="center-block"><br>
                 <input type="submit" name="register" value="Register!" class="btn btn-default center-block">
             </form>
         </div>
     </div>
+    <script language='javascript' type='text/javascript'>
+        function check(input) {
+            if (input.value != document.getElementById('password').value) {
+                input.setCustomValidity('Password Must be Matching.');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+    </script>
 </body>
 
 </html>
