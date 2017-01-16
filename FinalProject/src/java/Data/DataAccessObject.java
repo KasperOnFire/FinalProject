@@ -50,7 +50,7 @@ public class DataAccessObject {
 
     public User getUserByName(String username) throws SQLException{
         Statement stmt = conn.getConnection().createStatement();
-        String sql = "select * from gsusers where username = '" + username + "';";
+        String sql = "select * from user where username = '" + username + "';";
         User user = null;
         try {
             ResultSet rs = stmt.executeQuery(sql);
@@ -59,9 +59,8 @@ public class DataAccessObject {
                 String passwordRetrieved = rs.getString("password");
                 String saltRetrieved = rs.getString("salt");
                 String emailRetrieved = rs.getString("email");
-                int phoneNoRetrieved = rs.getInt("PhoneNo");
                 
-                user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, phoneNoRetrieved);
+                user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved);
             }
         } catch (Exception ex) {
         }
