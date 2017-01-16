@@ -108,14 +108,14 @@
             <div class="img">
                 <a target="_blank" href="error.html"><img src="img/darkside.jpg"></a>
                 <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="error.html" target="_blank">Dark Side of the Moon</a>
+                    <a class="artistName" href="error.html" target="_blank">Avicii</a><br>
+                    <a class="albumName" href="error.html" target="_blank">test Album</a>
                 </div>
             </div>
         </div>
     </div>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script>
         /* klasse fucking jquery*/
         $(function () {
@@ -124,16 +124,19 @@
         });
     </script>
     <script>
-        $(function () {
-            $(".desc").each(function () {
-                var artistName = jQuery(this).find(".artistName").text;
-                var artistLink = "http://last.fm/music/" + artistName.replace(/ /g, "+");
-                $(".artistName").attr("href", artistLink);
+        $(".desc").each(function () {
+            var i = 0;
+            var artistName = jQuery(this).find(".artistName")[i].text;
+            artistName = artistName.replace(/ /g, "+");
 
-                var albumName = jQuery(this).find(".albumName").text;
-                var albumLink = artistLink + "/" + albumName.replace(/ /g, "+");
-                $(".albumName").attr("href", albumLink);
-            })
+            var artistLink = "http://last.fm/music/" + artistName;
+            $(".artistName").attr("href", artistLink);
+
+            var albumName = jQuery(this).find(".albumName")[i].text;
+            albumName = albumName.replace(/ /g, "+");
+            var albumLink = artistLink + "/" + albumName;
+            $(".albumName").attr("href", albumLink);
+            i++;
         })
     </script>
 </body>
