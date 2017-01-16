@@ -22,21 +22,21 @@
         <div class="gallery">
             <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
             <div class="img">
-                <a target="_blank" href="" target="_blank" class="albumImg"><img src="img/darkside.jpg"></a>
+                <a target="_blank" href="" target="_blank"><img src="img/darkside.jpg" class="albumImg"></a>
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
                     <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a>
                 </div>
             </div>
             <div class="img">
-                <a target="_blank" href="" class="albumImg" class="albumImg" ><img src="img/darkside.jpg"></a>
+                <a target="_blank" href=""><img src="img/darkside.jpg" class="albumImg"></a>
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
                     <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a>
                 </div>
             </div>
             <div class="img">
-                <a target="_blank" href="" class="albumImg"><img src="img/darkside.jpg"></a>
+                <a target="_blank" href=""><img src="img/darkside.jpg" class="albumImg"></a>
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The 1975</span></a><br>
                     <a class="albumName" href="" target="_blank"><span class="albumSpan">I Like It When You Sleep, for You Are So Beautiful Yet So Unaware of It</span></a>
@@ -48,37 +48,37 @@
     <script src="js/jquery.textfill.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script>
-        /* klasse fucking jquery*/
         $(function () {
             var albums = $("div.img").length
             $("small.totalAlbums").replaceWith("<small>" + albums + "</small>");
         });
-    </script>
-    <script>
         $(".img").each(function () {
             var i = 0;
-            var artistName = jQuery(this).find(".artistName")[i].textContent;
+            var artistName = jQuery(this).find(".artistName")[i].text;
             artistName = artistName.replace(/ /g, "+");
             var artistLink = "http://last.fm/music/" + artistName;
             jQuery(this).find(".artistName").attr("href", artistLink);
 
-            var albumName = jQuery(this).find(".albumName")[i].textContent;
+            var albumName = jQuery(this).find(".albumName")[i].text;
             albumName = albumName.replace(/ /g, "+");
             var albumLink = artistLink + "/" + albumName;
             jQuery(this).find(".albumName").attr("href", albumLink);
-            jQuery(this).find(".albumImg").attr("href", albumLink);
+            jQuery(this).children("a").attr("href", albumLink);
 
 
-            i++;
-        })
-        $(".img").each(function () {
-            var i = 0;
             var apiKey = "3a8d6a8d0cb4132cacd967e9b9bae016";
-            var artistName = jQuery(this).find(".artistname")[i].textContent;
-            var albumName = jQuery(this).find(".albumName")[i].textContent;
             var apiLink = "http://ws.audioscrobbler.com/2.0/"
             var jsonLink = apiLink + "?method=album.getinfo&api_key=" + apiKey +
-                "&artist=" + artistName + "&album=" + albumLink + "&format=json";
+                "&artist=" + artistName + "&album=" + albumName + "&format=json";
+
+            //jQuery(this).find(".albumImg").attr("style", "display:none");
+            var $imgLink = JQuery(this).find(".albumImg");
+            $.getJSON(jsonLink, $imgLink, function (data) {
+                var albumString = data.album.image[2]["#text"];
+                alert($imgLink);
+                imgLink.attr("style", "display:none");
+            })
+
 
             i++;
         })
