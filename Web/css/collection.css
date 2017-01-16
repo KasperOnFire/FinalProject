@@ -15,8 +15,8 @@ div.img {
     margin: 5px;
     border: 1px solid #ccc;
     float: left;
-    width: 180px;
-    height: 254px;
+    width: 280px;
+    height: 354px;
     background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -30,8 +30,11 @@ div.img img {
 }
 
 div.desc {
-    padding: 15px;
+    padding: 5px;
     text-align: center;
+    overflow-y: auto;
+    
+
 }
 div.desc a{
     color: black;
