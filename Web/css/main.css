@@ -5,6 +5,8 @@
 
 body {
     background-image: url("../img/record1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: mohave;
 }
 
@@ -69,7 +71,6 @@ a.register {
 a.forgot {
     font-size: 20px;
 }
-
 
 .fancy {
     padding: 100px;

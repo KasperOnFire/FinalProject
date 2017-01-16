@@ -22,99 +22,30 @@
         <div class="gallery">
             <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
             <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <a target="_blank" href="" target="_blank" class="albumImg"><img src="img/darkside.jpg"></a>
                 <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a>
                 </div>
             </div>
             <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <a target="_blank" href="" class="albumImg" class="albumImg" ><img src="img/darkside.jpg"></a>
                 <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a>
                 </div>
             </div>
             <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
+                <a target="_blank" href="" class="albumImg"><img src="img/darkside.jpg"></a>
                 <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href=""><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Pink Floyd</a><br>
-                    <a class="albumName" href="">Dark Side of the Moon</a>
-                </div>
-            </div>
-            <div class="img">
-                <a target="_blank" href="error.html"><img src="img/darkside.jpg"></a>
-                <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank">Avicii</a><br>
-                    <a class="albumName" href="error.html" target="_blank">test Album</a>
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The 1975</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I Like It When You Sleep, for You Are So Beautiful Yet So Unaware of It</span></a>
                 </div>
             </div>
         </div>
     </div>
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery.textfill.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script>
         /* klasse fucking jquery*/
@@ -124,18 +55,31 @@
         });
     </script>
     <script>
-        $(".desc").each(function () {
+        $(".img").each(function () {
             var i = 0;
-            var artistName = jQuery(this).find(".artistName")[i].text;
+            var artistName = jQuery(this).find(".artistName")[i].textContent;
             artistName = artistName.replace(/ /g, "+");
-
             var artistLink = "http://last.fm/music/" + artistName;
-            $(".artistName").attr("href", artistLink);
+            jQuery(this).find(".artistName").attr("href", artistLink);
 
-            var albumName = jQuery(this).find(".albumName")[i].text;
+            var albumName = jQuery(this).find(".albumName")[i].textContent;
             albumName = albumName.replace(/ /g, "+");
             var albumLink = artistLink + "/" + albumName;
-            $(".albumName").attr("href", albumLink);
+            jQuery(this).find(".albumName").attr("href", albumLink);
+            jQuery(this).find(".albumImg").attr("href", albumLink);
+
+
+            i++;
+        })
+        $(".img").each(function () {
+            var i = 0;
+            var apiKey = "3a8d6a8d0cb4132cacd967e9b9bae016";
+            var artistName = jQuery(this).find(".artistname")[i].textContent;
+            var albumName = jQuery(this).find(".albumName")[i].textContent;
+            var apiLink = "http://ws.audioscrobbler.com/2.0/"
+            var jsonLink = apiLink + "?method=album.getinfo&api_key=" + apiKey +
+                "&artist=" + artistName + "&album=" + albumLink + "&format=json";
+
             i++;
         })
     </script>
