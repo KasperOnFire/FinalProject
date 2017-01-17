@@ -52,6 +52,7 @@ public class login extends HttpServlet {
                     out.println("Logging in!");
                     validate.login(username, password);
                     session.setAttribute("loggedIn", true);
+                    session.setAttribute("userLoggedIn", "test");
                     response.sendRedirect("collection.html");
                 } catch (Exception e) {
                     out.println("<p>Can't login</p>");
