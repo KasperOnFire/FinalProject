@@ -147,9 +147,6 @@ li a:hover {
     color: white;
 }
 
-
-/* Add Animation */
-
 @-webkit-keyframes slideIn {
     from {
         bottom: -300px;

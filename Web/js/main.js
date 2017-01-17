@@ -27,25 +27,9 @@
           var albumString = data.album.image[4]["#text"];
           $imgLink.attr("src", albumString);
       })
-
-
-
-      $.getJSON(jsonLink, function (data) {
-          var tracks = data.album.tracks;
-          tracks.each(function () {
-              $(this).find("tbody")
-                  .append($("<tr>")
-                      .append($("<td>")
-                          .append($("<p>")
-                              .text(tracks)
-                          )
-                      )
-                  )
-          })
-      })
-
       i++;
   })
+
   var modal = document.getElementById('myModal');
   var btn = document.getElementsByClassName("tracklist")[0];
   var span = document.getElementsByClassName("close")[0];
@@ -59,4 +43,13 @@
       if (event.target == modal) {
           modal.style.display = "none";
       }
+  }
+
+  var currentColor;
+
+  function changeColor() {
+      var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'];
+      var randNumb = Math.floor(Math.random() * colors.length);
+      currentColor = colors[randNumb];
+      document.getElementsByClassName("top-div").style["color"] = currentColor;
   }

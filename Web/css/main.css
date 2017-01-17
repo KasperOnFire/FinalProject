@@ -69,8 +69,6 @@ input {
     font-size: 18px;
 }
 
-
-}
 .login a {
     display: block;
     text-align: center;
@@ -78,15 +76,19 @@ input {
     font-size: 12px;
     color: black;
 }
+
 .login p {
     font-size: 24px;
 }
+
 a.register {
     font-size: 22px;
 }
+
 a.forgot {
     font-size: 20px;
 }
+
 .fancy {
     padding: auto;
     text-align: center;
