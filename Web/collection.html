@@ -8,7 +8,6 @@
     <meta name="author" content="Tjalfe Møller, David Carl & Kasper Ravn Breindal">
     <link rel="icon" href="img/favicon.png">
     <title>MusicProject</title>
-    <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="css/collection.css">
@@ -29,31 +28,38 @@
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
                     <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a><br>
-                    <button class="tracklist">Tracklist</button>
-                    <!-- The Modal -->
-                    <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span class="close">&times;</span>
-                                <h2>Modal Header</h2>
-                            </div>
-                            <div class="modal-body">
-                                <p>Some text in the Modal Body</p>
-                                <p>Some other text...</p>
-                            </div>
-                            <div class="modal-footer">
-                                <h3>Modal Footer</h3>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="img">
                 <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
-                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a><br>
+                    <button class="tracklist btn-primary">Tracklist</button>
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2 class="albumTitle">Album Title</h2>
+                                <h3 class="artistTitle">Artist name</h3>
+                            </div>
+                            <div class="<modal-body></modal-body>">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Track</th>
+                                            <th>Title</th>
+                                            <th>length</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="trackTable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="img">
@@ -68,7 +74,7 @@
     <div class="navbar">
         <ul>
             <li><a href="default.asp">Add Album</a></li>
-            <li><a href="news.asp">Fjern Album</a></li>
+            <li><a href="news.asp">Remove Album</a></li>
             <li style="float:right"><a href="about.asp">Logout</a></li>
         </ul>
     </div>
@@ -88,26 +94,15 @@
         }
     </script>
     <script>
-        // Get the modal
         var modal = document.getElementById('myModal');
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
+        var btn = document.getElementsByClassName("tracklist")[0];
         var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
         btn.onclick = function () {
             modal.style.display = "block";
         }
-
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
             modal.style.display = "none";
         }
-
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
