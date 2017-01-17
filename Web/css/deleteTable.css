@@ -1,0 +1,12 @@
+.table {
+    color: black;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.table button{
+    color: black;
+    border-radius: 15px;
+    
+}
+.table td{
+}
