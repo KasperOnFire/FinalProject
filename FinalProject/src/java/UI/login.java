@@ -56,6 +56,7 @@ public class login extends HttpServlet {
                     if(user != null){
                         session.setAttribute("loggedIn", true);
                         session.setAttribute("userLoggedIn", user.getUserString());                        
+                        session.setAttribute("user", user);                        
                         response.sendRedirect("collection.html");
                     }else{
                         response.sendRedirect("error.html");

@@ -18,7 +18,7 @@ public class ManageMusic {
         DAO.addAlbum(UID, artist, album);
     }
     
-    public void removeAlbum(String identifier){
+    public void removeAlbum(String identifier) throws SQLException{
         DAO.removeAlbum(identifier);
     }
     

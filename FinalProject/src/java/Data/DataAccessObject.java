@@ -33,13 +33,14 @@ public class DataAccessObject {
         try {
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
+                int UID = rs.getInt("UID");
                 String usernameRetrieved = rs.getString("username");
                 String passwordRetrieved = rs.getString("password");
                 String saltRetrieved = rs.getString("salt");
                 String emailRetrieved = rs.getString("email");
                 String userString = rs.getString("userstring");
                 
-                user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, userString);
+                user = new User(UID, usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, userString);
             }
         } catch (Exception ex) {
         }
@@ -59,7 +60,7 @@ public class DataAccessObject {
     
     public void addAlbum(int UID, String artist, String album) throws SQLException{
         stmt = conn.getConnection().createStatement();
-        String sql = "INSERT INTO music VALUES ('" + "nej" + "','" + UID + "','" + artist + "','" + album + "')";
+        String sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
         try {
             stmt.executeUpdate(sql);
         } catch (Exception e) {
@@ -84,15 +85,14 @@ public class DataAccessObject {
         return false;
     }
     
-    public String getNewIdentifier() throws SQLException{
+    private String getNewIdentifier() throws SQLException{
         boolean unique = false;
         String identifier = "";
         while(unique == false){
             identifier = pass.getSaltString();
             if(checkIdentifier(identifier)){
                unique = true; 
-            }
-            
+            }       
         }
         return identifier;
     }
