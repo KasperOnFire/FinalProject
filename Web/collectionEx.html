@@ -22,19 +22,30 @@
         <div class="gallery">
             <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
             <div class="img">
+                <a target="_blank" href="" target="_blank"><img src="img/placeholder.png" class="albumImg">
+                    <span class="albumSongs"><span></span></span>
+                </a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a><br>
+                </div>
+            </div>
+            <div class="img">
                 <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
                 <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">placeholder</span></a><br>
-                    <a class="albumName" href="" target="_blank"><span class="albumSpan">placeholder</span></a><br>
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a><br>
                     <button class="tracklist btn-primary">Tracklist</button>
+                    <!-- The Modal -->
                     <div id="myModal" class="modal">
+                        <!-- Modal content -->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <span class="close">&times;</span>
                                 <h2 class="albumTitle">Album Title</h2>
                                 <h3 class="artistTitle">Artist name</h3>
                             </div>
-                            <div class="modal-body">
+                            <div class="<modal-body></modal-body>">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -44,16 +55,18 @@
                                         </tr>
                                     </thead>
                                     <tbody class="trackTable">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>TestSong</td>
-                                            <td>2:48</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The 1975</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I Like It When You Sleep, for You Are So Beautiful Yet So Unaware of It</span></a>
                 </div>
             </div>
         </div>
@@ -68,6 +81,34 @@
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        var currentColor;
+
+        function changeColor() {
+            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
+                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'
+            ];
+            var randNumb = Math.floor(Math.random() * colors.length);
+            currentColor = colors[randNumb];
+            document.getElementsByClassName("main-header").style["color"] = currentColor;
+        }
+    </script>
+    <script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementsByClassName("tracklist")[0];
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
