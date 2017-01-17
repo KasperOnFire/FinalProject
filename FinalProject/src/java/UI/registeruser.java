@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Collection.AddMusic;
+import Collection.ManageMusic;
 import User.RegUser;
 import User.User;
 import User.Validate;
@@ -19,7 +19,7 @@ public class registeruser extends HttpServlet {
 
     Validate validate = new Validate();
     RegUser reguser = new RegUser();
-    AddMusic am = new AddMusic();
+    ManageMusic am = new ManageMusic();
 
     private boolean userAdded;
     private String username;

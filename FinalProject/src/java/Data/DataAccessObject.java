@@ -25,28 +25,6 @@ public class DataAccessObject {
     public DataAccessObject() throws Exception {
         this.conn = new DBConnector();
     }
-    
-//    public Product getProduct(String productName){
-//        Statement stmt = null;
-//        try {
-//            stmt = conn.getConnection().createStatement();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        String sql = "select * from gsprice where product = '" + productName + "'";
-//        Product product = null;
-//        try {
-//            ResultSet rs = stmt.executeQuery(sql);
-//            if (rs.next()) {
-//                int price = rs.getInt("Price");
-//                String productRetrieved = rs.getString("Product");
-//                product = new Product(productRetrieved, price);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return product;    
-//    }
 
     public User getUserByName(String username) throws SQLException{
         Statement stmt = conn.getConnection().createStatement();
@@ -79,9 +57,9 @@ public class DataAccessObject {
         }
     }
     
-    public void addSong(int UID, String artist, String album, String image, int year, String song, int time) throws SQLException{
+    public void addAlbum(int UID, String artist, String album) throws SQLException{
         stmt = conn.getConnection().createStatement();
-        String sql = "INSERT INTO music VALUES ('" + UID + "','" + artist + "','" + album + "','" + image + "','" + year + "','" + song + "','" + time + "')";
+        String sql = "INSERT INTO music VALUES ('" + "nej" + "','" + UID + "','" + artist + "','" + album + "')";
         try {
             stmt.executeUpdate(sql);
         } catch (Exception e) {
@@ -89,59 +67,43 @@ public class DataAccessObject {
         }
     }
 
-//    public void makeTable(String username) throws SQLException{
-//        Statement stmt = conn.getConnection().createStatement();
-//        String sqlMusic = "CREATE TABLE `collection`.`" + username + "_music` (`album` VARCHAR(255), `artist` VARCHAR(255), `image` VARCHAR(255), `year` int(255);";
-//        //String sqlMovie = "CREATE TABLE `collection`.`" + username + "_movie` ( )";
-//        try{
-//            System.out.println("BLIN!");
-//            stmt.executeUpdate(sqlMusic);
-//        }catch(Exception e){
-//            System.out.println("Error making user_music_table : " + e);
-//        }
-//    }    
+    private boolean checkIdentifier(String identifier) throws SQLException{
+        stmt = conn.getConnection().createStatement();
+        String sql = "SELECT identifier FROM music WHERE identifier ='" + identifier + "';";
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                String identifierRecieved = rs.getString("identifier");
+                if(identifier.equals(identifierRecieved)){
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+    
+    public String getNewIdentifier() throws SQLException{
+        boolean unique = false;
+        String identifier = "";
+        while(unique == false){
+            identifier = pass.getSaltString();
+            if(checkIdentifier(identifier)){
+               unique = true; 
+            }
+            
+        }
+        return identifier;
+    }
+    
+    public void removeAlbum(String identifier) throws SQLException{
+        stmt = conn.getConnection().createStatement();
+        String sql = "DELETE FROM music WHERE identifier='" + identifier + "';";
+        try {
+            stmt.executeUpdate(sql);
+        } catch (Exception e) {
+            System.out.println("blin! Cannot remove album : " + e);
+        }
+    }
 }
-
-//    public Order addOrder(String username, double width, double height, double glassBasePrice, double glassPrice, String frameType, double framePrice, double totalPrice) throws SQLException, UnsupportedEncodingException{               
-//        Statement stmt = conn.getConnection().createStatement();
-//        String sql = "INSERT INTO gsorders (Username, Width, Height, glassBasePrice, glassPrice, frameType, framePrice, totalPrice) VALUES ('" + username + "', '" + width + "', '" + height + "', '" + glassBasePrice + "', '" + glassPrice + "', '" + frameType + "', '" + framePrice + "', '" + totalPrice + "')";
-//        Order order = null;
-//        try{
-//            stmt.executeUpdate(sql);
-//        }catch(Exception e){
-//            System.out.println(e);
-//        }
-//        return order;
-//    }
-//    
-//    public ArrayList<Order> getOrdersByUser(String username){
-//        Statement stmt = null;
-//        try {
-//            stmt = conn.getConnection().createStatement();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        String sql = "select * from gsorders where username = '" + username + "'";
-//        ArrayList<Order> orders = new ArrayList<Order>();
-//        Order order = null;
-//        try {
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                int orderID = rs.getInt("orderID");
-//                String usernameRetrieved = rs.getString("username");
-//                double width = rs.getDouble("width");
-//                double height = rs.getDouble("height");
-//                double glassBasePrice = rs.getDouble("glassBasePrice");
-//                double glassPrice = rs.getDouble("glassPrice");
-//                String frameType = rs.getString("frameType");
-//                double framePrice = rs.getDouble("framePrice");
-//                double totalPrice = rs.getDouble("totalPrice");
-//                order = new Order(orderID, usernameRetrieved, width, height, glassBasePrice, glassPrice, frameType, framePrice, totalPrice);                
-//                orders.add(order);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DataAccessObject.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return orders;
-//    }
-//}
