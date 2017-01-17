@@ -1,6 +1,6 @@
 @font-face {
-    font-family: Mohave;
-    src: url("../fonts/mohave-semibold.otf");
+    font-family: mohave;
+    src: url("../fonts/Mohave-SemiBold.otf");
 }
 
 body {
@@ -20,13 +20,13 @@ body {
 }
 
 h1 {
-    color: #CDC6A5;
-    font-size: 90px;
+    color: mediumseagreen;
+    font-size: 75px;
     -webkit-text-stroke: 1px black;
 }
 
-h1 small {
-    color: #8D9F87;
+h2 {
+    color: mediumseagreen;
     font-size: 35px;
     -webkit-text-stroke: 1px black;
 }
@@ -52,6 +52,25 @@ input {
     font-size: 18px;
 }
 
+.addAlbum {
+    width: 25%;
+    height: fit-content;
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    color: black;
+    font-size: 18px;
+}
+
+
+}
 .login a {
     display: block;
     text-align: center;
@@ -59,21 +78,17 @@ input {
     font-size: 12px;
     color: black;
 }
-
 .login p {
     font-size: 24px;
 }
-
 a.register {
     font-size: 22px;
 }
-
 a.forgot {
     font-size: 20px;
 }
-
 .fancy {
-    padding: 100px;
+    padding: auto;
     text-align: center;
     color: white;
     font-size: 45px;

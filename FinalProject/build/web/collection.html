@@ -8,7 +8,6 @@
     <meta name="author" content="Tjalfe Møller, David Carl & Kasper Ravn Breindal">
     <link rel="icon" href="img/favicon.png">
     <title>MusicProject</title>
-    <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="css/collection.css">
@@ -17,22 +16,50 @@
 <body>
     <div class="container main-div">
         <div class="top-div">
-            <h1 class="text-center main-header">YourMusic!<small> for managing your shit.</small></h1>
+            <h1 class="text-center main-header">YourMusic!</h1>
+            <h2 class="text-center"> for managing anything!</h2>
         </div>
         <div class="gallery">
             <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
             <div class="img">
-                <a target="_blank" href="" target="_blank"><img src="img/placeholder.png" class="albumImg"></a>
+                <a target="_blank" href="" target="_blank"><img src="img/placeholder.png" class="albumImg">
+                    <span class="albumSongs"><span></span></span>
+                </a>
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
-                    <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a><br>
                 </div>
             </div>
             <div class="img">
                 <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
                 <div class="desc">
                     <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
-                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a><br>
+                    <button class="tracklist btn-primary">Tracklist</button>
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close">&times;</span>
+                                <h2 class="albumTitle">Album Title</h2>
+                                <h3 class="artistTitle">Artist name</h3>
+                            </div>
+                            <div class="<modal-body></modal-body>">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Track</th>
+                                            <th>Title</th>
+                                            <th>length</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="trackTable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="img">
@@ -44,10 +71,44 @@
             </div>
         </div>
     </div>
+    <div class="navbar">
+        <ul>
+            <li><a href="addalbum.html">Add Album</a></li>
+            <li><a href="lolno">Remove Album</a></li>
+            <li style="float:right"><a href="logout.html">Logout</a></li>
+        </ul>
+    </div>
     <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/jquery.textfill.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        var currentColor;
+
+        function changeColor() {
+            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
+                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'
+            ];
+            var randNumb = Math.floor(Math.random() * colors.length);
+            currentColor = colors[randNumb];
+            document.getElementsByClassName("main-header").style["color"] = currentColor;
+        }
+    </script>
+    <script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementsByClassName("tracklist")[0];
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>

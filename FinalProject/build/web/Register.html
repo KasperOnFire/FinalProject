@@ -16,10 +16,11 @@
 <body>
     <div class="container main-div">
         <div class="top-div">
-            <h1 class="text-center main-header">YourMusic!<small> for managing anything!</small></h1>
+            <h1 class="text-center main-header">YourMusic!</h1>
+            <h2 class="text-center"> for managing anything!</h2>
         </div>
         <div class="login">
-            <form action="registeruser" method="POST">
+            <form action="submitLogin" method="POST">
                 <p class="text-center">Email</p>
                 <input type="text" required="required" name="email" placeholder="text@example.com" class="center-block"><br>
                 <p class="text-center">Username</p>
@@ -32,7 +33,8 @@
             </form>
         </div>
     </div>
-    <script language='javascript' type='text/javascript'>
+    <script src="js/main.js"></script>
+    <script>
         function check(input) {
             if (input.value != document.getElementById('password').value) {
                 input.setCustomValidity('Password Must be Matching.');
@@ -40,6 +42,18 @@
                 // input is valid -- reset the error message
                 input.setCustomValidity('');
             }
+        }
+    </script>
+    <script>
+        var currentColor;
+
+        function changeColor() {
+            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
+                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'
+            ];
+            var randNumb = Math.floor(Math.random() * colors.length);
+            currentColor = colors[randNumb];
+            document.getElementsByClassName("main-header").style["color"] = currentColor;
         }
     </script>
 </body>
