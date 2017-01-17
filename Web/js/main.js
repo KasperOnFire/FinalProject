@@ -33,10 +33,12 @@
            "&artist=" + artistName + "&album=" + albumName + "&autocorrect[1]&format=json";
 
        var $imgLink = jQuery(this).find(".albumImg");
-       $.getJSON(jsonLink, function (data) {
-           var albumString = data.album.image[4]["#text"];
-           $imgLink.attr("src", albumString);
-       })
+       if (albumName != "placeholder" && artistName != "placeholder") {
+           $.getJSON(jsonLink, function (data) {
+               var albumString = data.album.image[4]["#text"];
+               $imgLink.attr("src", albumString);
+           })
+       }
        i++;
    })
 
@@ -59,6 +61,6 @@
    var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'];
    var randNumb = Math.floor(Math.random() * colors.length);
    var newColor = colors[randNumb];
-   $(document).ready(function () {
+   $(function () {
        $(".changecolor").css("color", newColor);
    })
