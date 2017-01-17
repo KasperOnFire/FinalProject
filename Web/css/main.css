@@ -50,6 +50,7 @@ input {
     border-radius: 15px;
     color: black;
     font-size: 18px;
+    font-family: monospace;
 }
 
 .login a {
