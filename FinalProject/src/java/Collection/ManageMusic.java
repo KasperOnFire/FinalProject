@@ -2,6 +2,7 @@ package Collection;
 
 import Data.DataAccessObject;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ManageMusic {
 
@@ -20,6 +21,10 @@ public class ManageMusic {
     
     public void removeAlbum(String identifier) throws SQLException{
         DAO.removeAlbum(identifier);
+    }
+    
+    public ArrayList<Music> getAlbums(int UID) throws SQLException{
+        return DAO.getAlbumByUID(UID);
     }
     
 }

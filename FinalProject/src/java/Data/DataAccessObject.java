@@ -47,6 +47,25 @@ public class DataAccessObject {
         return user;    
     }
     
+    public ArrayList<Music> getAlbumByUID(int UID) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
+        String sql = "SELECT * from music where UID = '" + UID + "';";
+        ArrayList<Music> albumCollection = new ArrayList();
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                Music music = null;
+                String identifier = rs.getString("identifier");
+                String album = rs.getString("album");
+                String artist = rs.getString("artist");
+                music = new Music(UID, identifier, artist, album);
+                albumCollection.add(music);
+            }
+        } catch (Exception e) {
+        }
+        return albumCollection;
+    }
+    
     public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
         String passSalt = pass.getSaltString();
@@ -101,5 +120,4 @@ public class DataAccessObject {
             System.out.println("blin! Cannot remove album : " + e);
         }
     }
-    
 }
