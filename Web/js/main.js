@@ -25,7 +25,5 @@
           var albumString = data.album.image[4]["#text"];
           $imgLink.attr("src", albumString);
       })
-
-
       i++;
   })
