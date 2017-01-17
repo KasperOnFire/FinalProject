@@ -21,25 +21,25 @@ public class Validate {
         } catch (Exception ex) {
         }    
     }
-    
-    public String login(String username, String password) throws SQLException{
+       
+    public User login(String username, String password) throws SQLException{
         user = DAO.getUserByName(username);
         
         try {
             hashedPassword = pass.get_SHA_512_SecurePassword(password, user.getPasswordSalt());
-        } catch (UnsupportedEncodingException ex) {
+        } catch (Exception e) {
         }
         
         if(hashedPassword.equals(user.getPassword())){
-            loggedIn = true;
             if(debug == true){
-                return "User logged in: " + user.getUsername() + " <br>With the following password: " + user.getPassword() + " <br>And the following salt: " + user.getPasswordSalt();
+                System.out.println("User logged in: " + user.getUsername() + " <br>With the following password: " + user.getPassword() + " <br>And the following salt: " + user.getPasswordSalt());
+                System.out.println("UID: " + user.getUID());
             }else{
-                return "User logged in: " + user.getUsername();
+                System.out.println("User logged in: " + user.getUsername());
             }
+            return user;
         }else{
-            loggedIn = false;
-            return "Wrong password!";
+            return null;
         }
     }
     

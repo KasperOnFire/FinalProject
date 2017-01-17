@@ -11,6 +11,7 @@
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/collection.css">
 </head>
 
 <body>
@@ -18,19 +19,35 @@
         <div class="top-div">
             <h1 class="text-center main-header">YourMusic!<small> for managing your shit.</small></h1>
         </div>
-        <div class="">
-            <table class="table-bordered">
-                <tr>
-                    <th>Artist</th>
-                    <th>Album</th>
-                </tr>
-                <tr>
-                    <td>Eminem</td>
-                    <td>Lose Yourself</td>
-                </tr>
-            </table>
+        <div class="gallery">
+            <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
+            <div class="img">
+                <a target="_blank" href="" target="_blank"><img src="img/placeholder.png" class="albumImg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a>
+                </div>
+            </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The 1975</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I Like It When You Sleep, for You Are So Beautiful Yet So Unaware of It</span></a>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery.textfill.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -16,22 +16,32 @@
 <body>
     <div class="container main-div">
         <div class="top-div">
-            <h1 class="text-center main-header">YourMusic!<small> for managing your shit.</small></h1>
+            <h1 class="text-center main-header">YourMusic!<small> for managing anything!</small></h1>
         </div>
         <div class="login">
             <form action="registeruser" method="POST">
                 <p class="text-center">Email</p>
-                <input type="text" name="email" placeholder="text@example.com" class="center-block"><br>
+                <input type="text" required="required" name="email" placeholder="text@example.com" class="center-block"><br>
                 <p class="text-center">Username</p>
-                <input type="text" name="username" placeholder="Username" class="center-block"><br>
+                <input type="text" required="required" name="username" placeholder="Username" class="center-block"><br>
                 <p class="text-center">Password</p>
-                <input type="password" name="pw" placeholder="********" class="center-block"><br>
+                <input type="password" id="password" required="required" name="pw" placeholder="********" class="center-block"><br>
                 <p class="text-center">Confim password</p>
-                <input type="password" name="pw2" placeholder="********" class="center-block"><br>
+                <input type="password" id="password" required="required" name="pw2" placeholder="********" class="center-block"><br>
                 <input type="submit" name="register" value="Register!" class="btn btn-default center-block">
             </form>
         </div>
     </div>
+    <script language='javascript' type='text/javascript'>
+        function check(input) {
+            if (input.value != document.getElementById('password').value) {
+                input.setCustomValidity('Password Must be Matching.');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,6 +1,8 @@
 package UI;
 
+import User.User;
 import User.Validate;
+import exception.IncorrectLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -45,16 +47,23 @@ public class login extends HttpServlet {
             if (session.getAttribute("loggedIn") == null) {
                 session.setAttribute("loggedIn", false);
             }
+            
             if ((boolean) session.getAttribute("loggedIn")) {
-                out.println("<p>Already logged in!</p>");
+                response.sendRedirect("collection.html");
             } else {
                 try {
-                    out.println("Logging in!");
-                    validate.login(username, password);
-                    session.setAttribute("loggedIn", true);
-                    response.sendRedirect("collection.html");
+                    User user = validate.login(username, password);
+                    if(user != null){
+                        session.setAttribute("loggedIn", true);
+                        session.setAttribute("userLoggedIn", user.getUserString());                        
+                        session.setAttribute("user", user);                        
+                        response.sendRedirect("collection.html");
+                    }else{
+                        response.sendRedirect("error.html");
+                        throw new IncorrectLogin("Wrong username or password!");
+                    }
                 } catch (Exception e) {
-                    out.println("<p>Can't login</p>");
+                    System.out.println("Can't login! : " + e);
                 }
             }
             out.println("</body>");
