@@ -59,8 +59,9 @@ public class DataAccessObject {
                 String passwordRetrieved = rs.getString("password");
                 String saltRetrieved = rs.getString("salt");
                 String emailRetrieved = rs.getString("email");
+                String userString = rs.getString("userstring");
                 
-                user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved);
+                user = new User(usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, userString);
             }
         } catch (Exception ex) {
         }

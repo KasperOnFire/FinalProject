@@ -22,24 +22,44 @@ public class Validate {
         }    
     }
     
-    public String login(String username, String password) throws SQLException{
+//    public String login(String username, String password) throws SQLException{
+//        user = DAO.getUserByName(username);
+//        
+//        try {
+//            hashedPassword = pass.get_SHA_512_SecurePassword(password, user.getPasswordSalt());
+//        } catch (UnsupportedEncodingException ex) {
+//        }
+//        
+//        if(hashedPassword.equals(user.getPassword())){
+//            loggedIn = true;
+//            if(debug == true){
+//                return "User logged in: " + user.getUsername() + " <br>With the following password: " + user.getPassword() + " <br>And the following salt: " + user.getPasswordSalt();
+//            }else{
+//                return "User logged in: " + user.getUsername();
+//            }
+//        }else{
+//            loggedIn = false;
+//            return "Wrong password!";
+//        }
+//    }
+    
+    public User login(String username, String password) throws SQLException{
         user = DAO.getUserByName(username);
         
         try {
             hashedPassword = pass.get_SHA_512_SecurePassword(password, user.getPasswordSalt());
-        } catch (UnsupportedEncodingException ex) {
+        } catch (Exception e) {
         }
         
         if(hashedPassword.equals(user.getPassword())){
-            loggedIn = true;
             if(debug == true){
-                return "User logged in: " + user.getUsername() + " <br>With the following password: " + user.getPassword() + " <br>And the following salt: " + user.getPasswordSalt();
+                System.out.println("User logged in: " + user.getUsername() + " <br>With the following password: " + user.getPassword() + " <br>And the following salt: " + user.getPasswordSalt());
             }else{
-                return "User logged in: " + user.getUsername();
+                System.out.println("User logged in: " + user.getUsername());
             }
+            return user;
         }else{
-            loggedIn = false;
-            return "Wrong password!";
+            return null;
         }
     }
     

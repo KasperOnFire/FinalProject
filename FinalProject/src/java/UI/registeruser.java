@@ -10,30 +10,44 @@ import javax.servlet.http.HttpServletResponse;
 
 import Collection.AddMusic;
 import User.RegUser;
+import User.User;
+import User.Validate;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "registeruser", urlPatterns = {"/registeruser"})
 public class registeruser extends HttpServlet {
 
+    Validate validate = new Validate();
     RegUser reguser = new RegUser();
     AddMusic am = new AddMusic();
-    
+
     private boolean userAdded;
     private String username;
     private String password;
     private String email;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            try{
+            HttpSession session = request.getSession();
+
+            try {
                 username = request.getParameter("username");
                 password = request.getParameter("pw");
                 email = request.getParameter("email");
-                if(reguser.usernameTaken(username) == false){
+                if (reguser.usernameTaken(username)) {
                     reguser.addUser(username, password, email);
-                }else{
+                    
+                    User user = validate.login(username, password);
+                    if (user != null) {
+                        session.setAttribute("loggedIn", true);
+                        session.setAttribute("userLoggedIn", user.getUserString());
+                    }
+                    
+                    response.sendRedirect("collection.html");
+                } else {
                     out.println("<h1>Username already taken! Fix this with javascript!</h1>");
                 }
 //                }else{
@@ -43,14 +57,14 @@ public class registeruser extends HttpServlet {
 //                    }else{
 //                        userAdded = false;    
 //                    }
-            }catch(Exception e){
+            } catch (Exception e) {
                 out.println("Somethings wrong! : " + e);
             }
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet registeruser</title>");            
+            out.println("<title>Servlet registeruser</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("Username: " + username);
