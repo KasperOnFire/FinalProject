@@ -1,7 +1,6 @@
 .gallery {
-    margin:auto;
+    margin: auto;
     margin-top: 5%;
-
 }
 
 .gallery h3 {
@@ -134,7 +133,7 @@ li a:hover {
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: mediumseagreen;
     color: white;
 }
 
@@ -144,7 +143,7 @@ li a:hover {
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: mediumseagreen;
     color: white;
 }
 
