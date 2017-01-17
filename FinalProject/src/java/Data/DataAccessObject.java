@@ -70,15 +70,10 @@ public class DataAccessObject {
 
     private boolean checkIdentifier(String identifier) throws SQLException{
         stmt = conn.getConnection().createStatement();
-        String sql = "SELECT identifier FROM music WHERE identifier ='" + identifier + "';";
+        String sql = "SELECT * FROM music WHERE identifier ='" + identifier + "';";
         try {
             ResultSet rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                String identifierRecieved = rs.getString("identifier");
-                if(identifier.equals(identifierRecieved)){
-                    return true;
-                }
-            }
+            return !rs.next();
         } catch (Exception e) {
             System.out.println(e);
         }
