@@ -5,10 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Final Project">
-    <meta name="author" content=" Tjalfe Møller, David Carl & Kasper Ravn Breindal">
+    <meta name="author" content="Tjalfe Møller, David Carl & Kasper Ravn Breindal">
     <link rel="icon" href="img/favicon.png">
     <title>MusicProject</title>
-    <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 </head>
@@ -16,8 +15,8 @@
 <body>
     <div class="container main-div">
         <div class="top-div">
-            <h1 class="text-center main-header">YourMusic!</h1>
-            <h2 class="text-center"> for managing anything!</h2>
+            <h1 class="text-center main-header changecolor">YourMusic!</h1>
+            <h2 class="text-center changecolor"> for managing anything!</h2>
         </div>
         <div class="login">
             <form action="submitLogin" method="POST">
@@ -34,28 +33,7 @@
         </div>
     </div>
     <script src="js/main.js"></script>
-    <script>
-        function check(input) {
-            if (input.value != document.getElementById('password').value) {
-                input.setCustomValidity('Password Must be Matching.');
-            } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
-            }
-        }
-    </script>
-    <script>
-        var currentColor;
-
-        function changeColor() {
-            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
-                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'
-            ];
-            var randNumb = Math.floor(Math.random() * colors.length);
-            currentColor = colors[randNumb];
-            document.getElementsByClassName("main-header").style["color"] = currentColor;
-        }
-    </script>
+    <script>changeColor();</script>
 </body>
 
 </html>

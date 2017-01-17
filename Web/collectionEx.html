@@ -16,8 +16,8 @@
 <body>
     <div class="container main-div">
         <div class="top-div">
-            <h1 class="text-center main-header">YourMusic!</h1>
-            <h2 class="text-center"> for managing anything!</h2>
+            <h1 class="text-center main-header changecolor">YourMusic!</h1>
+            <h2 class="text-center changecolor"> for managing anything!</h2>
         </div>
         <div class="gallery">
             <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
@@ -81,34 +81,7 @@
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        var currentColor;
-
-        function changeColor() {
-            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
-                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'
-            ];
-            var randNumb = Math.floor(Math.random() * colors.length);
-            currentColor = colors[randNumb];
-            document.getElementsByClassName("main-header").style["color"] = currentColor;
-        }
-    </script>
-    <script>
-        var modal = document.getElementById('myModal');
-        var btn = document.getElementsByClassName("tracklist")[0];
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script>changeColor();</script>
 </body>
 
 </html>
