@@ -36,7 +36,9 @@
        if (albumName != "placeholder" && artistName != "placeholder") {
            $.getJSON(jsonLink, function (data) {
                var albumString = data.album.image[4]["#text"];
-               $imgLink.attr("src", albumString);
+               if (albumString.length != 0) {
+                   $imgLink.attr("src", albumString);
+               }
            })
        }
        i++;

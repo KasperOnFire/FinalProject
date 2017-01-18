@@ -10,6 +10,7 @@
     <title>MusicProject</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 
 <body>
@@ -25,8 +26,16 @@
                 <p class="text-center">Album</p>
                 <input type="text" required="required" name="album" placeholder="Appetite for Destruction" class="center-block"><br>
                 <button class="btn-default center-block">Add!</button>
+                <input type="checkbox" name="addMore" value="addSeveral">Add several albums?<br>
             </form>
         </div>
+    </div>
+    <div class="navbar">
+        <ul>
+            <li><a href="collection.html">My collection</a></li>
+            <li><a href="deletealbum.html">Remove Album</a></li>
+            <li style="float:right"><a href="logout.html">Logout</a></li>
+        </ul>
     </div>
     <script src="js/main.js"></script>
 </body>
