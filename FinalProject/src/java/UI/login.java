@@ -37,13 +37,6 @@ public class login extends HttpServlet {
         }
 
         try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login! User : " + username + "</h1>");
             if (session.getAttribute("loggedIn") == null) {
                 session.setAttribute("loggedIn", false);
             }
@@ -65,8 +58,6 @@ public class login extends HttpServlet {
                     System.out.println("Can't login! : " + e);
                 }
             }
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
