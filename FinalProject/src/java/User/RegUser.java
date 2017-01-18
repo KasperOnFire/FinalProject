@@ -1,12 +1,12 @@
 package User;
 
-import Data.DataAccessObjectImpl;
+import Data.*;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 public class RegUser {
 
-    DataAccessObjectImpl DAO = null;
+    DataAccessObject DAO = null;
 
     public RegUser() {
         try {

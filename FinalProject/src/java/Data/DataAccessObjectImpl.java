@@ -18,7 +18,8 @@ public class DataAccessObjectImpl implements DataAccessObject{
     public DataAccessObjectImpl() throws Exception {
         this.conn = new DBConnector();
     }
-
+    
+    @Override
     public User getUserByName(String username) throws SQLException {
         Statement stmt = conn.getConnection().createStatement();
         String sql = "select * from user where username = '" + username + "';";
@@ -39,7 +40,8 @@ public class DataAccessObjectImpl implements DataAccessObject{
         }
         return user;
     }
-
+    
+    @Override
     public int getUIDByUserString(String userString) throws SQLException {
         Statement stmt = conn.getConnection().createStatement();
         String sql = "select UID from user where userstring = '" + userString + "';";
@@ -53,7 +55,8 @@ public class DataAccessObjectImpl implements DataAccessObject{
         }
         return UID;
     }
-
+    
+    @Override
     public ArrayList<Music> getAlbumByUID(int UID) throws SQLException {
         Statement stmt = conn.getConnection().createStatement();
         String sql = "SELECT * from music where UID = '" + UID + "';";
@@ -74,6 +77,7 @@ public class DataAccessObjectImpl implements DataAccessObject{
         return albumCollection;
     }
 
+    @Override
     public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException {
         Statement stmt = conn.getConnection().createStatement();
         String passSalt = pass.getSaltString();
@@ -85,6 +89,7 @@ public class DataAccessObjectImpl implements DataAccessObject{
         }
     }
 
+    @Override
     public boolean addAlbum(int UID, String artist, String album) throws SQLException {
         stmt = conn.getConnection().createStatement();
         String sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
@@ -121,6 +126,7 @@ public class DataAccessObjectImpl implements DataAccessObject{
         return identifier;
     }
 
+    @Override
     public void removeAlbum(String identifier) throws SQLException {
         stmt = conn.getConnection().createStatement();
         String sql = "DELETE FROM music WHERE identifier='" + identifier + "';";

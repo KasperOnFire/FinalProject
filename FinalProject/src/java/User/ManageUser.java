@@ -1,6 +1,6 @@
 package User;
 
-import Data.DataAccessObjectImpl;
+import Data.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.UnsupportedEncodingException;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class ManageUser {
     Password pass = new Password();
-    DataAccessObjectImpl DAO = null;
+    DataAccessObject DAO = null;
     User user = null;
     
     private String hashedPassword;
