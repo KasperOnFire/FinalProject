@@ -64,3 +64,5 @@ $RECYCLE.BIN/
 /JSONreader/nbproject/private/
 /JSONreader/build/
 /FinalProject/dist/
+FinalProject/nbproject/private/private.xml
+*.properties

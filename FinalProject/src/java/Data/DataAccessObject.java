@@ -1,32 +1,25 @@
 package Data;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import User.User;
 import User.Password;
 import Collection.Music;
 import java.util.ArrayList;
-import java.util.Random;
-
 
 public class DataAccessObject {
 
     private final DBConnector conn;
     Statement stmt;
     Password pass = new Password();
-    
+
     public DataAccessObject() throws Exception {
         this.conn = new DBConnector();
     }
 
-    public User getUserByName(String username) throws SQLException{
+    public User getUserByName(String username) throws SQLException {
         Statement stmt = conn.getConnection().createStatement();
         String sql = "select * from user where username = '" + username + "';";
         User user = null;
@@ -39,35 +32,35 @@ public class DataAccessObject {
                 String saltRetrieved = rs.getString("salt");
                 String emailRetrieved = rs.getString("email");
                 String userString = rs.getString("userstring");
-                
+
                 user = new User(UID, usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, userString);
             }
         } catch (Exception ex) {
         }
-        return user;    
+        return user;
     }
-    
-    public int getUIDByUserString(String userString) throws SQLException{
+
+    public int getUIDByUserString(String userString) throws SQLException {
         Statement stmt = conn.getConnection().createStatement();
         String sql = "select UID from user where userstring = '" + userString + "';";
         int UID = 0;
         try {
             ResultSet rs = stmt.executeQuery(sql);
-            if(rs.next()){
+            if (rs.next()) {
                 UID = rs.getInt("UID");
             }
         } catch (Exception e) {
         }
         return UID;
     }
-    
-    public ArrayList<Music> getAlbumByUID(int UID) throws SQLException{
+
+    public ArrayList<Music> getAlbumByUID(int UID) throws SQLException {
         Statement stmt = conn.getConnection().createStatement();
         String sql = "SELECT * from music where UID = '" + UID + "';";
         ArrayList<Music> albumCollection = new ArrayList();
         try {
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()){
+            while (rs.next()) {
                 Music music = null;
                 String identifier = rs.getString("identifier");
                 String album = rs.getString("album");
@@ -77,21 +70,22 @@ public class DataAccessObject {
             }
         } catch (Exception e) {
         }
+        albumCollection.sort((o1, o2) -> o1.getArtist().compareTo(o2.getArtist()));
         return albumCollection;
     }
-    
-    public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
+
+    public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException {
         Statement stmt = conn.getConnection().createStatement();
         String passSalt = pass.getSaltString();
         String sql = "INSERT INTO user (username, email, password, salt, userstring) VALUES ('" + username + "','" + email + "','" + pass.get_SHA_512_SecurePassword(password, passSalt) + "','" + passSalt + "','" + pass.getSaltString() + "')";
-        try{
+        try {
             stmt.executeUpdate(sql);
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("ERROR : " + e);
         }
     }
-    
-    public boolean addAlbum(int UID, String artist, String album) throws SQLException{
+
+    public boolean addAlbum(int UID, String artist, String album) throws SQLException {
         stmt = conn.getConnection().createStatement();
         String sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
         try {
@@ -103,7 +97,7 @@ public class DataAccessObject {
         return false;
     }
 
-    private boolean checkIdentifier(String identifier) throws SQLException{
+    private boolean checkIdentifier(String identifier) throws SQLException {
         stmt = conn.getConnection().createStatement();
         String sql = "SELECT * FROM music WHERE identifier ='" + identifier + "';";
         try {
@@ -114,20 +108,20 @@ public class DataAccessObject {
         }
         return false;
     }
-    
-    private String getNewIdentifier() throws SQLException{
+
+    private String getNewIdentifier() throws SQLException {
         boolean unique = false;
         String identifier = "";
-        while(unique == false){
+        while (unique == false) {
             identifier = pass.getSaltString();
-            if(checkIdentifier(identifier)){
-               unique = true; 
-            }       
+            if (checkIdentifier(identifier)) {
+                unique = true;
+            }
         }
         return identifier;
     }
-    
-    public void removeAlbum(String identifier) throws SQLException{
+
+    public void removeAlbum(String identifier) throws SQLException {
         stmt = conn.getConnection().createStatement();
         String sql = "DELETE FROM music WHERE identifier='" + identifier + "';";
         try {
