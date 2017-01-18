@@ -47,6 +47,39 @@ public class DataAccessObject {
         return user;    
     }
     
+    public int getUIDByUserString(String userString) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
+        String sql = "select UID from user where userstring = '" + userString + "';";
+        int UID = 0;
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                UID = rs.getInt("UID");
+            }
+        } catch (Exception e) {
+        }
+        return UID;
+    }
+    
+    public ArrayList<Music> getAlbumByUID(int UID) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
+        String sql = "SELECT * from music where UID = '" + UID + "';";
+        ArrayList<Music> albumCollection = new ArrayList();
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                Music music = null;
+                String identifier = rs.getString("identifier");
+                String album = rs.getString("album");
+                String artist = rs.getString("artist");
+                music = new Music(UID, identifier, artist, album);
+                albumCollection.add(music);
+            }
+        } catch (Exception e) {
+        }
+        return albumCollection;
+    }
+    
     public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException{               
         Statement stmt = conn.getConnection().createStatement();
         String passSalt = pass.getSaltString();
@@ -58,27 +91,24 @@ public class DataAccessObject {
         }
     }
     
-    public void addAlbum(int UID, String artist, String album) throws SQLException{
+    public boolean addAlbum(int UID, String artist, String album) throws SQLException{
         stmt = conn.getConnection().createStatement();
         String sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
         try {
             stmt.executeUpdate(sql);
+            return true;
         } catch (Exception e) {
             System.out.println(e);
         }
+        return false;
     }
 
     private boolean checkIdentifier(String identifier) throws SQLException{
         stmt = conn.getConnection().createStatement();
-        String sql = "SELECT identifier FROM music WHERE identifier ='" + identifier + "';";
+        String sql = "SELECT * FROM music WHERE identifier ='" + identifier + "';";
         try {
             ResultSet rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                String identifierRecieved = rs.getString("identifier");
-                if(identifier.equals(identifierRecieved)){
-                    return true;
-                }
-            }
+            return !rs.next();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -106,5 +136,4 @@ public class DataAccessObject {
             System.out.println("blin! Cannot remove album : " + e);
         }
     }
-    
 }

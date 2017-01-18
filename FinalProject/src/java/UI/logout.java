@@ -20,10 +20,10 @@ public class logout extends HttpServlet {
 
         try{
             session.invalidate();
-            session.setAttribute("loggedIn", setFalse);
-            response.sendRedirect("index.html");
+            session.setAttribute("loggedIn", false);
+            response.sendRedirect("index");
         }catch(IllegalStateException e){
-            response.sendRedirect("index.html");
+            response.sendRedirect("index");
         }
     }
 

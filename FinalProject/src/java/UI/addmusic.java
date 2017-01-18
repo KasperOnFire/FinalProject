@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
 import Collection.ManageMusic;
@@ -39,9 +34,8 @@ public class addmusic extends HttpServlet {
             }
 
             try {
-                User user = (User) session.getAttribute("user");
-                manage.addAlbum(user.getUID(), artist, album);
-                response.sendRedirect("collection.html");
+                manage.addAlbum(2, artist, album);
+                response.sendRedirect("collection");
             } catch (Exception e) {
                 System.out.println("BLIN Exception : " + e);
             }
