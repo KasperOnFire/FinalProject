@@ -1,16 +1,16 @@
 package Collection;
 
-import Data.DataAccessObject;
+import Data.DataAccessObjectImpl;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ManageMusic {
 
-    DataAccessObject DAO = null;
+    DataAccessObjectImpl DAO = null;
       
     public ManageMusic() {
         try {
-            DAO = new DataAccessObject();
+            DAO = new DataAccessObjectImpl();
         } catch (Exception ex) {
         }    
     }

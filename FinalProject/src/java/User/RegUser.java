@@ -1,17 +1,17 @@
 package User;
 
-import Data.DataAccessObject;
+import Data.DataAccessObjectImpl;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 public class RegUser {
 
-    DataAccessObject DAO = null;
+    DataAccessObjectImpl DAO = null;
 
     public RegUser() {
         try {
             System.out.println("DAO = NEW");
-            DAO = new DataAccessObject();
+            DAO = new DataAccessObjectImpl();
             System.out.println("DAO = OLD");
         } catch (Exception e) {
             System.out.println("Blin : " + e);
