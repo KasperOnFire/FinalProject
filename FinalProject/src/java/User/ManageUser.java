@@ -11,6 +11,7 @@ public class ManageUser {
     DataAccessObject DAO = null;
     User user = null;
     
+    private boolean loggedIn;    
     private String hashedPassword;
     private boolean debug = true;
     
@@ -23,6 +24,7 @@ public class ManageUser {
        
     public User login(String username, String password) throws SQLException{
         user = DAO.getUserByName(username);
+        loggedIn = false;
         
         try {
             hashedPassword = pass.get_SHA_512_SecurePassword(password, user.getPasswordSalt());
@@ -36,6 +38,7 @@ public class ManageUser {
             }else{
                 System.out.println("User logged in: " + user.getUsername());
             }
+            loggedIn = true;
             return user;
         }else{
             return null;
@@ -53,5 +56,9 @@ public class ManageUser {
         } catch (Exception e) {
         }
         return 0;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
     }
 }

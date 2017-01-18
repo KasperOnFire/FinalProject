@@ -46,14 +46,10 @@ public class ManageUserTest {
 
         String username = "test2";
         String password = "test2";
-        String passString = "ee4abeaf2b3b4f19310a91aef4c7c8e323d45339e18baa998db5b93558128e66ef42b4232ee6cc2b2a6caeed9970f6e579b33758436f0d6af3a7911a6559a40c";
-        String salt = "W5RTQB3X2YU2NF41S8   ";
-        String email = "test2";
-        String userString = "TRITT7OSQF2GWW0GDK";
         
         ManageUser instance = new ManageUser();
-        User expResult = new User(3, username, passString, salt, email, userString);
-        User result = instance.login(username, password);
+        boolean expResult = false;
+        boolean result = instance.isLoggedIn();
         assertEquals(expResult, result);
     }
 
@@ -65,14 +61,11 @@ public class ManageUserTest {
         System.out.println("getUser");
 
         String username = "test2";
-        String passString = "ee4abeaf2b3b4f19310a91aef4c7c8e323d45339e18baa998db5b93558128e66ef42b4232ee6cc2b2a6caeed9970f6e579b33758436f0d6af3a7911a6559a40c";
-        String salt = "W5RTQB3X2YU2NF41S8";
-        String email = "test2";
         String userString = "TRITT7OSQF2GWW0GDK";
 
         ManageUser instance = new ManageUser();
-        User expResult = new User(3, username, passString, salt, email, userString);
-        User result = instance.getUser(username);
+        String expResult = userString;
+        String result = instance.getUser(username).getUserString();
         assertEquals(expResult, result);
     }
 

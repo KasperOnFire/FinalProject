@@ -53,16 +53,17 @@ public class ManageMusicTest {
     }
 
     /**
+     * 
      * Test of removeAlbum method, of class ManageMusic.
      */
     @Test
     public void testRemoveAlbum() throws Exception {
-        System.out.println("removeAlbum");
-        String identifier = "";
         ManageMusic instance = new ManageMusic();
+        System.out.println("removeAlbum");
+        String identifier = instance.getAlbums(3).get(0).getIdentifier();
+        System.out.println("Identifier : " + identifier);
         instance.removeAlbum(identifier);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(0, instance.getAlbums(3).size());
     }
 
     /**
@@ -74,8 +75,7 @@ public class ManageMusicTest {
         int UID = 3;
         ManageMusic instance = new ManageMusic();
         ArrayList<Music> expResult = null;
-        ArrayList<Music> result = instance.getAlbums(UID);
-        assertEquals(expResult, result);
-    }
-    
+        ArrayList<Music> result = instance.getAlbums(3);
+        assertEquals(1, result.size());
+    }    
 }
