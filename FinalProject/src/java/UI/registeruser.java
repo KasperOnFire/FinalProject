@@ -50,27 +50,9 @@ public class registeruser extends HttpServlet {
                 } else {
                     out.println("<h1>Username already taken! Fix this with javascript!</h1>");
                 }
-//                }else{
-//                    if(regUser.usernameTaken(username) == true){
-//                        regUser.addUser(username, password1, email, phoneNo);
-//                        userAdded = true;
-//                    }else{
-//                        userAdded = false;    
-//                    }
             } catch (Exception e) {
                 out.println("Somethings wrong! : " + e);
             }
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet registeruser</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("Username: " + username);
-            out.println("<h1>Servlet registeruser at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
