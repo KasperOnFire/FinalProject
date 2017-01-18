@@ -47,6 +47,20 @@ public class DataAccessObject {
         return user;    
     }
     
+    public int getUIDByUserString(String userString) throws SQLException{
+        Statement stmt = conn.getConnection().createStatement();
+        String sql = "select UID from user where userstring = '" + userString + "';";
+        int UID = 0;
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                UID = rs.getInt("UID");
+            }
+        } catch (Exception e) {
+        }
+        return UID;
+    }
+    
     public ArrayList<Music> getAlbumByUID(int UID) throws SQLException{
         Statement stmt = conn.getConnection().createStatement();
         String sql = "SELECT * from music where UID = '" + UID + "';";

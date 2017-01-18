@@ -1,7 +1,7 @@
 package UI;
 
 import User.User;
-import User.Validate;
+import User.ManageUser;
 import exception.IncorrectLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class login extends HttpServlet {
 
-    Validate validate = new Validate();
+    ManageUser validate = new ManageUser();
 
     private String username;
     private String password;
@@ -56,7 +56,6 @@ public class login extends HttpServlet {
                     if(user != null){
                         session.setAttribute("loggedIn", true);
                         session.setAttribute("userLoggedIn", user.getUserString());                        
-                        session.setAttribute("user", user);                        
                         response.sendRedirect("collection");
                     }else{
                         response.sendRedirect("error.html");

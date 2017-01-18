@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import Collection.ManageMusic;
 import User.RegUser;
 import User.User;
-import User.Validate;
+import User.ManageUser;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "registeruser", urlPatterns = {"/registeruser"})
 public class registeruser extends HttpServlet {
 
-    Validate validate = new Validate();
+    ManageUser validate = new ManageUser();
     RegUser reguser = new RegUser();
     ManageMusic am = new ManageMusic();
 

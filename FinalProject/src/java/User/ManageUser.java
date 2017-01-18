@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
-public class Validate {
+public class ManageUser {
     Password pass = new Password();
     DataAccessObject DAO = null;
     User user = null;
@@ -15,7 +15,7 @@ public class Validate {
     private boolean loggedIn;
     private boolean debug = true;
     
-    public Validate() {
+    public ManageUser() {
         try {
             DAO = new DataAccessObject();
         } catch (Exception ex) {
@@ -50,5 +50,13 @@ public class Validate {
 
     public boolean isLoggedIn() {
         return loggedIn;
+    }
+    
+    public int getUID(String userString){
+        try {
+            return DAO.getUIDByUserString(userString);
+        } catch (Exception e) {
+        }
+        return 0;
     }
 }

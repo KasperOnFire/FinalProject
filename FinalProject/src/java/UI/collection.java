@@ -2,6 +2,7 @@ package UI;
 
 import Collection.ManageMusic;
 import Collection.Music;
+import User.ManageUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -10,16 +11,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "collection", urlPatterns = {"/collection"})
 public class collection extends HttpServlet {
 
-    ManageMusic manage = new ManageMusic();
+    ManageMusic manageM = new ManageMusic();
+    ManageUser manageU = new ManageUser();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+            HttpSession session = request.getSession();
+            
+            if (session.getAttribute("loggedIn") != null) {
+                if ((boolean) session.getAttribute("loggedIn")) {
+                    System.out.println("User is logged in!");
+                } else {
+                    response.sendRedirect("index");
+                }
+            }else{
+                response.sendRedirect("index");
+            }
+
             out.println("<!DOCTYPE html>\n"
                     + "<html lang=\"en\">\n"
                     + "\n"
@@ -44,7 +60,7 @@ public class collection extends HttpServlet {
                     + "        <div class=\"gallery\">\n"
                     + "            <h3><small class=\"totalAlbums\">##</small> albums in your collection.</h3>\n");
             try {
-                ArrayList<Music> music = manage.getAlbums(2);
+                ArrayList<Music> music = manageM.getAlbums(manageU.getUID((String) session.getAttribute("userLoggedIn")));
                 for (Music object : music) {
                     out.println("            <div class=\"img\">\n"
                             + "                <a target=\"_blank\" href=\"\" target=\"_blank\"><img src=\"img/placeholder.png\" class=\"albumImg\">\n"
@@ -58,7 +74,7 @@ public class collection extends HttpServlet {
                 }
             } catch (Exception e) {
             }
-                    out.println("            <div class=\"img\">\n"
+            out.println("            <div class=\"img\">\n"
                     + "                <a target=\"_blank\" href=\"\"><img src=\"img/placeholder.png\" class=\"albumImg\"></a>\n"
                     + "                <div class=\"desc\">\n"
                     + "                    <a class=\"artistName\" href=\"error.html\" target=\"_blank\"><span class=\"artistSpan\">The xx</span></a><br>\n"
