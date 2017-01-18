@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="Final Project">
+	<meta name="author" content=" Tjalfe Møller, David Carl & Kasper Ravn Breindal">
+	<link rel="icon" href="img/favicon.png">
+	<title>MusicProject</title>
+	<!-- Bootstrap core CSS -->
+	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/deleteTable.css">
+	<link rel="stylesheet" href="css/navbar.css">
+</head>
+
+<body>
+	<div class="container main-div">
+		<div class="top-div">
+			<h1 class="text-center main-header changecolor">YourMusic!</h1>
+			<h2 class="text-center changecolor"> for managing anything!</h2>
+		</div>
+		<div class="mainTable">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Album</th>
+						<th>Artist</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>getAlbumName</td>
+						<td>getArtistName</td>
+						<td>
+							<form action="removemusic" method="POST"><button class="btn-danger">Delete?</button></form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="navbar">
+		<ul>
+			<li><a href="collection.html">My collection</a></li>
+			<li><a href="addalbum.html">Add album</a></li>
+			<li style="float:right"><a href="logout.html">Logout</a></li>
+		</ul>
+	</div>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

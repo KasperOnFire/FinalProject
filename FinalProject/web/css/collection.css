@@ -43,33 +43,8 @@ div.desc a {
     font-size: 16px;
 }
 
-ul {
-    position: fixed;
-    margin: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 50%;
-    list-style-type: none;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: mediumseagreen;
+.tracklist{
+    border-radius: 10px;
 }
 
 
@@ -146,9 +121,6 @@ li a:hover {
     background-color: mediumseagreen;
     color: white;
 }
-
-
-/* Add Animation */
 
 @-webkit-keyframes slideIn {
     from {
