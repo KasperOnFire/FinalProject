@@ -12,7 +12,6 @@ public class ManageUser {
     User user = null;
     
     private String hashedPassword;
-    private boolean loggedIn;
     private boolean debug = true;
     
     public ManageUser() {
@@ -46,10 +45,6 @@ public class ManageUser {
     public User getUser(String username) throws SQLException{
         user = DAO.getUserByName(username);
         return user;
-    }
-
-    public boolean isLoggedIn() {
-        return loggedIn;
     }
     
     public int getUID(String userString){

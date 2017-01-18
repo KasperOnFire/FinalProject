@@ -2,6 +2,7 @@ package UI;
 
 import Collection.ManageMusic;
 import Collection.Music;
+import User.ManageUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -10,16 +11,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "delete", urlPatterns = {"/delete"})
 public class delete extends HttpServlet {
 
     ManageMusic manage = new ManageMusic();
+    ManageUser manageU = new ManageUser();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+            HttpSession session = request.getSession();
+
+            if (session.getAttribute("loggedIn") != null) {
+                if ((boolean) session.getAttribute("loggedIn")) {
+                    System.out.println("User is logged in!");
+                } else {
+                    response.sendRedirect("index");
+                }
+            } else {
+                response.sendRedirect("index");
+            }
+
             out.println("<!DOCTYPE html>\n"
                     + "<html lang=\"en\">\n"
                     + "\n"
@@ -54,28 +70,17 @@ public class delete extends HttpServlet {
                     + "                <tbody>\n");
 
             try {
-                ArrayList<Music> music = manage.getAlbums(2);
-
+                ArrayList<Music> music = manage.getAlbums(manageU.getUID((String) session.getAttribute("userLoggedIn")));
                 for (Music object : music) {
-                    
+
                     out.println("<tr>\n"
                             + "<td>" + object.getAlbum() + "</td>\n"
                             + "<td>" + object.getArtist() + "</td>\n"
                             + "<td>\n"
                             + "<form action=\"removemusic\" method=\"POST\"><input type=\"hidden\" name=\"identifier\" value=" + object.getIdentifier() + "><button class=\"btn-danger\">Delete?</button></form>\n"
                             + "</td>\n");
-                    
-//                    out.println("                    <tr>\n"
-//                            + "                        <td>" + object.getAlbum()) + "</td>\n"
-//                            + "                        <td>" + object.getArtist() + "</td>\n"
-//                            + "                        <td>\n"
-//                            + "                            <form action=\"removemusic\" method=\"POST\"><input type=\"hidden\" name=\"identifier\" value=" + object.getIdentifier() + "><button class=\"btn-danger\">Delete?</button></form>\n"
-//                            + "                        </td>\n"
-//                            + "                    </tr>\n"
-//                                                             );
-//                
-                    }    
-                    } catch (Exception e) {
+                }
+            } catch (Exception e) {
             }
             out.println("                </tbody>\n"
                     + "            </table>\n"

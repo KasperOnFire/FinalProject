@@ -15,8 +15,8 @@ public class ManageMusic {
         }    
     }
     
-    public void addAlbum(int UID, String artist, String album) throws SQLException{
-        DAO.addAlbum(UID, artist, album);
+    public boolean addAlbum(int UID, String artist, String album) throws SQLException{
+        return DAO.addAlbum(UID, artist, album);
     }
     
     public void removeAlbum(String identifier) throws SQLException{

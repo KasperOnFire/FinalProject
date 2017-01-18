@@ -91,14 +91,16 @@ public class DataAccessObject {
         }
     }
     
-    public void addAlbum(int UID, String artist, String album) throws SQLException{
+    public boolean addAlbum(int UID, String artist, String album) throws SQLException{
         stmt = conn.getConnection().createStatement();
         String sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
         try {
             stmt.executeUpdate(sql);
+            return true;
         } catch (Exception e) {
             System.out.println(e);
         }
+        return false;
     }
 
     private boolean checkIdentifier(String identifier) throws SQLException{
