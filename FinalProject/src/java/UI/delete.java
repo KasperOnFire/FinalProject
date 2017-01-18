@@ -57,15 +57,23 @@ public class delete extends HttpServlet {
                 ArrayList<Music> music = manage.getAlbums(2);
 
                 for (Music object : music) {
-                    out.println("                    <tr>\n"
-                            + "                        <td>" + object.getAlbum()) + "</td>\n"
-                            + "                        <td>" + object.getArtist() + "</td>\n"
-                            + "                        <td>\n"
-                            + "                            <form action=\"removemusic\" method=\"POST\"><input type=\"hidden\" name=\"identifier\" value=" + object.getIdentifier() + "><button class=\"btn-danger\">Delete?</button></form>\n"
-                            + "                        </td>\n"
-                            + "                    </tr>\n"
-                                                             );
-                
+                    
+                    out.println("<tr>\n"
+                            + "<td>" + object.getAlbum() + "</td>\n"
+                            + "<td>" + object.getArtist() + "</td>\n"
+                            + "<td>\n"
+                            + "<form action=\"removemusic\" method=\"POST\"><input type=\"hidden\" name=\"identifier\" value=" + object.getIdentifier() + "><button class=\"btn-danger\">Delete?</button></form>\n"
+                            + "</td>\n");
+                    
+//                    out.println("                    <tr>\n"
+//                            + "                        <td>" + object.getAlbum()) + "</td>\n"
+//                            + "                        <td>" + object.getArtist() + "</td>\n"
+//                            + "                        <td>\n"
+//                            + "                            <form action=\"removemusic\" method=\"POST\"><input type=\"hidden\" name=\"identifier\" value=" + object.getIdentifier() + "><button class=\"btn-danger\">Delete?</button></form>\n"
+//                            + "                        </td>\n"
+//                            + "                    </tr>\n"
+//                                                             );
+//                
                     }    
                     } catch (Exception e) {
             }

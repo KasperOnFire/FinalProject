@@ -37,6 +37,7 @@ public class removemusic extends HttpServlet {
             
             try {
                 manage.removeAlbum(identifier);
+                response.sendRedirect("delete");
             } catch (Exception e) {
             }
         }

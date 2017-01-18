@@ -49,7 +49,7 @@ public class login extends HttpServlet {
             }
             
             if ((boolean) session.getAttribute("loggedIn")) {
-                response.sendRedirect("collection.html");
+                response.sendRedirect("collection");
             } else {
                 try {
                     User user = validate.login(username, password);
@@ -57,7 +57,7 @@ public class login extends HttpServlet {
                         session.setAttribute("loggedIn", true);
                         session.setAttribute("userLoggedIn", user.getUserString());                        
                         session.setAttribute("user", user);                        
-                        response.sendRedirect("collection.html");
+                        response.sendRedirect("collection");
                     }else{
                         response.sendRedirect("error.html");
                         throw new IncorrectLogin("Wrong username or password!");

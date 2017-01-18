@@ -40,7 +40,7 @@ public class addmusic extends HttpServlet {
 
             try {
                 manage.addAlbum(2, artist, album);
-                response.sendRedirect("collection.html");
+                response.sendRedirect("collection");
             } catch (Exception e) {
                 System.out.println("BLIN Exception : " + e);
             }
