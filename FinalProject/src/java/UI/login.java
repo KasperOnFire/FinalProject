@@ -52,7 +52,6 @@ public class login extends HttpServlet {
                         session.setAttribute("userLoggedIn", user.getUserString());                        
                         response.sendRedirect("collection");
                     }else{
-                        response.sendRedirect("error.html");
                         throw new errorException("Wrong username or password!");
                     }
                 } catch (Exception e) {

@@ -11,8 +11,7 @@
             <h1>ERROR</h1>
         </div>
         <div class="menu">
-            <a href="orderPage.html">Go back to order page</a>
-            <a href='index.html'>Click here to go to homepage!</a>
+            <a href='index'>Click here to go to homepage!</a>
         </div>
         <div class="content">
             <p>${errorCode}</p>
