@@ -1,4 +1,4 @@
-package org;
+package JSON;
 
 import java.io.IOException;
 

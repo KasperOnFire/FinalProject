@@ -1,5 +1,7 @@
 package jsonreader;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Tjalfe
@@ -8,6 +10,12 @@ public class JSONmain {
 
     public static void main(String[] args) {
         JSONreader JSON = new JSONreader();
-        JSON.soutJSON("http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=3a8d6a8d0cb4132cacd967e9b9bae016&artist=cher&track=believe&format=json");
+        ArrayList<Sang> temp = JSON.getAlbum("the xx","xx");
+        for (Sang sang : temp) {
+            System.out.println("");
+            System.out.println("CDNumber: "+sang.getCdNumber());
+            System.out.println("Name: "+sang.getName());
+            System.out.println("Duration: "+sang.getDuration());
+        }
     }
 }

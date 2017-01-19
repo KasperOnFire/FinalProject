@@ -1,4 +1,4 @@
-package org;
+package JSON;
 
 import static java.lang.String.format;
 
