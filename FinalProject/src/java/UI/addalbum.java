@@ -1,11 +1,7 @@
 package UI;
 
-import Collection.ManageMusic;
-import Collection.Music;
-import User.ManageUser;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,17 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "collection", urlPatterns = {"/collection"})
-public class collection extends HttpServlet {
-
-    ManageMusic manageM = new ManageMusic();
-    ManageUser manageU = new ManageUser();
+@WebServlet(name = "addalbum", urlPatterns = {"/addalbum"})
+public class addalbum extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            
             HttpSession session = request.getSession();
             
             if (session.getAttribute("loggedIn") != null) {
@@ -35,7 +28,7 @@ public class collection extends HttpServlet {
             }else{
                 response.sendRedirect("index");
             }
-
+            
             out.println("<!DOCTYPE html>\n"
                     + "<html lang=\"en\">\n"
                     + "\n"
@@ -43,13 +36,13 @@ public class collection extends HttpServlet {
                     + "    <meta charset=\"utf-8\">\n"
                     + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\n"
                     + "    <meta name=\"description\" content=\"Final Project\">\n"
-                    + "    <meta name=\"author\" content=\"Tjalfe Møller, David Carl & Kasper Ravn Breindal\">\n"
+                    + "    <meta name=\"author\" content=\" Tjalfe Møller, David Carl & Kasper Ravn Breindal\">\n"
                     + "    <link rel=\"icon\" href=\"img/favicon.png\">\n"
                     + "    <title>MusicProject</title>\n"
+                    + "    <!-- Bootstrap core CSS -->\n"
                     + "    <link href=\"bootstrap/css/bootstrap.css\" rel=\"stylesheet\">\n"
                     + "    <link href=\"css/main.css\" rel=\"stylesheet\">\n"
                     + "    <link href=\"css/navbar.css\" rel=\"stylesheet\">\n"
-                    + "    <link rel=\"stylesheet\" href=\"css/collection.css\">\n"
                     + "</head>\n"
                     + "\n"
                     + "<body>\n"
@@ -58,24 +51,17 @@ public class collection extends HttpServlet {
                     + "            <h1 class=\"text-center main-header\">YourMusic!</h1>\n"
                     + "            <h2 class=\"text-center\"> for managing anything!</h2>\n"
                     + "        </div>\n"
-                    + "        <div class=\"gallery\">\n"
-                    + "            <h3><small class=\"totalAlbums\">##</small> albums in your collection.</h3>\n");
-            try {
-                ArrayList<Music> music = manageM.getAlbums(manageU.getUID((String) session.getAttribute("userLoggedIn")));
-                for (Music object : music) {
-                    out.println("            <div class=\"img\">\n"
-                            + "                <a target=\"_blank\" href=\"\" target=\"_blank\"><img src=\"img/placeholder.png\" class=\"albumImg\">\n"
-                            + "                    <span class=\"albumSongs\"><span></span></span>\n"
-                            + "                </a>\n"
-                            + "                <div class=\"desc\">\n"
-                            + "                    <a class=\"artistName\" href=\"error.html\" target=\"_blank\"><span class=\"artistSpan\">" + object.getArtist() + "</span></a><br>\n"
-                            + "                    <a class=\"albumName\" href=\"\" target=\"_blank\"><span class=\"albumSpan\">" + object.getAlbum() + "</span></a><br>\n"
-                            + "                </div>\n"
-                            + "            </div>\n");
-                }
-            } catch (Exception e) {
-            }
-                    out.println("    <div class=\"navbar\">\n"
+                    + "        <div class=\"addAlbum\">\n"
+                    + "            <form action=\"addmusic\" method=\"POST\">\n"
+                    + "                <p class=\"text-center\">Artist</p>\n"
+                    + "                <input type=\"text\" required=\"required\" name=\"artist\" placeholder=\"Guns n' Roses'\" class=\"center-block\"><br>\n"
+                    + "                <p class=\"text-center\">Album</p>\n"
+                    + "                <input type=\"text\" required=\"required\" name=\"album\" placeholder=\"Appetite for Destruction\" class=\"center-block\"><br>\n"
+                    + "                <button class=\"btn-default center-block\">Add!</button>\n"
+                    + "            </form>\n"
+                    + "        </div>\n"
+                    + "    </div>\n"
+                    + "    <div class=\"navbar\">\n"
                     + "        <ul>\n"
                     + "            <li><a href=\"addalbum\">Add Album</a></li>\n"
                     + "            <li><a href=\"delete\">Remove Album</a></li>\n"
@@ -83,37 +69,7 @@ public class collection extends HttpServlet {
                     + "            <li style=\"float:right\"><a href=\"logout\">Logout</a></li>\n"
                     + "        </ul>\n"
                     + "    </div>\n"
-                    + "    <script src=\"js/jquery-3.1.1.min.js\"></script>\n"
-                    + "    <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n"
                     + "    <script src=\"js/main.js\"></script>\n"
-                    + "    <script>\n"
-                    + "        var currentColor;\n"
-                    + "\n"
-                    + "        function changeColor() {\n"
-                    + "            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',\n"
-                    + "                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'\n"
-                    + "            ];\n"
-                    + "            var randNumb = Math.floor(Math.random() * colors.length);\n"
-                    + "            currentColor = colors[randNumb];\n"
-                    + "            document.getElementsByClassName(\"main-header\").style[\"color\"] = currentColor;\n"
-                    + "        }\n"
-                    + "    </script>\n"
-                    + "    <script>\n"
-                    + "        var modal = document.getElementById('myModal');\n"
-                    + "        var btn = document.getElementsByClassName(\"tracklist\")[0];\n"
-                    + "        var span = document.getElementsByClassName(\"close\")[0];\n"
-                    + "        btn.onclick = function () {\n"
-                    + "            modal.style.display = \"block\";\n"
-                    + "        }\n"
-                    + "        span.onclick = function () {\n"
-                    + "            modal.style.display = \"none\";\n"
-                    + "        }\n"
-                    + "        window.onclick = function (event) {\n"
-                    + "            if (event.target == modal) {\n"
-                    + "                modal.style.display = \"none\";\n"
-                    + "            }\n"
-                    + "        }\n"
-                    + "    </script>\n"
                     + "</body>\n"
                     + "\n"
                     + "</html>");
