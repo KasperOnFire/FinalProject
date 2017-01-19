@@ -71,7 +71,7 @@ $.getJSON(jsonLink, function(data){
 
 
 var modal = document.getElementById('myModal');
-var btn = document.getElementsByClassName("albumImg")[0];
+var btn = document.getElementsByClassName("tracklist")[0];
 var span = document.getElementsByClassName("close")[0];
 btn.onclick = function () {
     modal.style.display = "block";

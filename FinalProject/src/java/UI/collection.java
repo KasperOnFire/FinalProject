@@ -75,6 +75,7 @@ public class collection extends HttpServlet {
                             + "                <div class=\"desc\">\n"
                             + "                    <a class=\"artistName\" href=\"error.html\" target=\"_blank\"><span class=\"artistSpan\">" + object.getArtist() + "</span></a><br>\n"
                             + "                    <a class=\"albumName\" href=\"\" target=\"_blank\"><span class=\"albumSpan\">" + object.getAlbum() + "</span></a><br>\n"
+                            + "                    <button class=\"tracklist btn-primary\">Tracklist</button>\n"
                             + "           <div id=\"myModal\" class=\"modal\">\n"
                             + "                        <div class=\"modal-content\">\n"
                             + "                            <div class=\"modal-header \">\n"
