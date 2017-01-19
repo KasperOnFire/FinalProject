@@ -3,7 +3,6 @@ package Data;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import User.User;
 import User.Password;
 import Collection.Music;
