@@ -67,3 +67,10 @@ $RECYCLE.BIN/
 FinalProject/nbproject/private/private.xml
 *.properties
 FinalProject/nbproject/private/private.properties
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
