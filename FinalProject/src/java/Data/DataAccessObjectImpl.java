@@ -7,14 +7,11 @@ import User.User;
 import User.Password;
 import Collection.Music;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataAccessObjectImpl implements DataAccessObject {
 
     private final DBConnector conn;
-    Statement stmtb;
-    PreparedStatement stmt;
     Password pass = new Password();
 
     public DataAccessObjectImpl() throws Exception {
@@ -25,7 +22,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
     public User getUserByName(String username) throws SQLException {
         User user = null;
         try {
-            stmt = conn.getConnection().prepareStatement("SELECT * FROM user WHERE username = (?);");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT * FROM user WHERE username = (?);");
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -40,9 +37,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
             }
         } finally {
             try {
-                if (stmt != null) {
-                    //stmt.close();
-                }
             } catch (Exception e) {
             }
         }
@@ -53,7 +47,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
     public int getUIDByUserString(String userString) throws SQLException {
         int UID = 0;
         try {
-            stmt = conn.getConnection().prepareStatement("SELECT UID FROM user WHERE userstring = (?);");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT UID FROM user WHERE userstring = (?);");
             stmt.setString(1, userString);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -61,9 +55,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
             }
         } finally {
             try {
-                if (stmt != null) {
-                    //stmt.close();
-                }
             } catch (Exception e) {
             }
         }
@@ -74,7 +65,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
     public ArrayList<Music> getAlbumByUID(int UID) throws SQLException {
         ArrayList<Music> albumCollection = new ArrayList();
         try {
-            stmt = conn.getConnection().prepareStatement("SELECT * FROM music WHERE UID = (?);");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT * FROM music WHERE UID = (?);");
             stmt.setInt(1, UID);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -87,9 +78,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
             }
         } finally {
             try {
-                if (stmt != null) {
-                    //stmt.close();
-                }
             } catch (Exception e) {
             }
         }
@@ -101,7 +89,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
     public void registerUser(String username, String password, String email) throws SQLException, UnsupportedEncodingException {
         try {
             String passSalt = pass.getSaltString();
-            stmt = conn.getConnection().prepareStatement("INSERT INTO user (username, email, password, salt, userstring) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("INSERT INTO user (username, email, password, salt, userstring) VALUES (?, ?, ?, ?, ?)");
             stmt.setString(1, username);
             stmt.setString(2, email);
             stmt.setString(3, pass.get_SHA_512_SecurePassword(password, passSalt));
@@ -110,9 +98,6 @@ public class DataAccessObjectImpl implements DataAccessObject {
             stmt.executeUpdate();
         } finally {
             try {
-                if (stmt != null) {
-                    //stmt.close();
-                }
             } catch (Exception e) {
             }
         }
@@ -120,55 +105,35 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
     @Override
     public boolean addAlbum(int UID, String artist, String album) {
-        String sql = "";
-        
         try {
-            stmtb = conn.getConnection().createStatement();
-            sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
-        } catch (SQLException ex) {
+        PreparedStatement stmt = conn.getConnection().prepareStatement("INSERT INTO music (identifier, UID, artist, album) VALUES (?,?,?,?);");
+            stmt.setString(1, getNewIdentifier());
+            stmt.setInt(2, UID);
+            stmt.setString(3, artist);
+            stmt.setString(4, album);
+            stmt.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                    return true;
+//                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        try {
-            stmt.executeUpdate(sql);
-            return true;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return false;
-        
-//        System.out.println("b : ");
-//        try {
-//            System.out.println("BL");
-//            stmt = conn.getConnection().prepareStatement("INSERT INTO music VALUES (?, ?, ?, ?);");
-//            System.out.println("BLIN");
-//            stmt.setString(1, getNewIdentifier());
-//            System.out.println("BLIN BLIN");
-//            stmt.setInt(2, UID);
-//            System.out.println("BLIN BLIN BLIN");
-//            stmt.setString(3, artist);
-//            System.out.println("BLIN BLIN BLIN BLIN");
-//            stmt.setString(4, album);
-//            System.out.println("BLIN BLIN BLIN BLIN BLIN");
-//            stmt.executeUpdate();
-//            System.out.println("BLIN BLIN BLIN BLIN BLIN BLIN");
-//            return true;
-//        } catch (Exception e) {
-//            System.out.println("AddAlbum + " + e);
-//            return false;
-//        }
+    return false;
     }
 
     private boolean checkIdentifier(String identifier) throws SQLException {
         try {
-            stmt = conn.getConnection().prepareStatement("SELECT * FROM music WHERE identifier = (?);");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("SELECT * FROM music WHERE identifier = (?);");
             stmt.setString(1, identifier);
             ResultSet rs = stmt.executeQuery();
             System.out.println("testing");
             return !rs.next();
         } finally {
             try {
-                if (stmt != null) {
-                    //stmt.close();
-                }
             } catch (Exception e) {
                 return false;
             }
@@ -190,14 +155,11 @@ public class DataAccessObjectImpl implements DataAccessObject {
     @Override
     public void removeAlbum(String identifier) throws SQLException {
         try {
-            stmt = conn.getConnection().prepareStatement("DELETE FROM music WHERE identifier = (?);");
+            PreparedStatement stmt = conn.getConnection().prepareStatement("DELETE FROM music WHERE identifier = (?);");
             stmt.setString(1, identifier);
             stmt.executeUpdate();
         } finally {
             try {
-                if (stmt != null) {
-                    //stmt.close();
-                }
             } catch (Exception e) {
             }
         }
