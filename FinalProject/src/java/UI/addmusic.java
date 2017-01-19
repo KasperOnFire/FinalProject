@@ -1,6 +1,7 @@
 package UI;
 
 import Collection.ManageMusic;
+import User.ManageUser;
 import User.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "addmusic", urlPatterns = {"/addmusic"})
 public class addmusic extends HttpServlet {
 
-    ManageMusic manage = new ManageMusic();
+    ManageMusic manageM = new ManageMusic();
+    ManageUser manageU = new ManageUser();
     private String artist;
     private String album;
 
@@ -34,20 +36,11 @@ public class addmusic extends HttpServlet {
             }
 
             try {
-                manage.addAlbum(2, artist, album);
+                manageM.addAlbum(manageU.getUID((String)session.getAttribute("userLoggedIn")), artist, album);
                 response.sendRedirect("collection");
             } catch (Exception e) {
                 System.out.println("BLIN Exception : " + e);
             }
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet addmusic</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet addmusic at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
     
