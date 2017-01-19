@@ -12,12 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jsonreader.JSONreader;
+import jsonreader.Sang;
 
 @WebServlet(name = "collection", urlPatterns = {"/collection"})
 public class collection extends HttpServlet {
 
     ManageMusic manageM = new ManageMusic();
     ManageUser manageU = new ManageUser();
+    JSONreader JSON = new JSONreader();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,14 +28,14 @@ public class collection extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             HttpSession session = request.getSession();
-            
+
             if (session.getAttribute("loggedIn") != null) {
                 if ((boolean) session.getAttribute("loggedIn")) {
                     System.out.println("User is logged in!");
                 } else {
                     response.sendRedirect("index");
                 }
-            }else{
+            } else {
                 response.sendRedirect("index");
             }
 
@@ -63,6 +66,8 @@ public class collection extends HttpServlet {
             try {
                 ArrayList<Music> music = manageM.getAlbums(manageU.getUID((String) session.getAttribute("userLoggedIn")));
                 for (Music object : music) {
+                    ArrayList<Sang> temp = JSON.getAlbum(object.getArtist(), object.getAlbum());
+                    
                     out.println("            <div class=\"img\">\n"
                             + "                <a target=\"_blank\" href=\"\" target=\"_blank\"><img src=\"img/placeholder.png\" class=\"albumImg\">\n"
                             + "                    <span class=\"albumSongs\"><span></span></span>\n"
@@ -70,12 +75,43 @@ public class collection extends HttpServlet {
                             + "                <div class=\"desc\">\n"
                             + "                    <a class=\"artistName\" href=\"error.html\" target=\"_blank\"><span class=\"artistSpan\">" + object.getArtist() + "</span></a><br>\n"
                             + "                    <a class=\"albumName\" href=\"\" target=\"_blank\"><span class=\"albumSpan\">" + object.getAlbum() + "</span></a><br>\n"
+                            + "           <div id=\"myModal\" class=\"modal\">\n"
+                            + "                        <div class=\"modal-content\">\n"
+                            + "                            <div class=\"modal-header \">\n"
+                            + "                                <span class=\"close\">&times;</span>\n"
+                            + "                                <h2 class=\"albumTitle\">Album Title</h2>\n"
+                            + "                                <h3 class=\"artistTitle\">Artist name</h3>\n"
+                            + "                            </div>\n"
+                            + "                            <div class=\"modal-body\">\n"
+                            + "                                <table class=\"table table-striped\">\n"
+                            + "                                    <thead>\n"
+                            + "                                        <tr>\n"
+                            + "                                            <th>Track</th>\n"
+                            + "                                            <th>Title</th>\n"
+                            + "                                            <th>length</th>\n"
+                            + "                                        </tr>\n"
+                            + "                                    </thead>\n"
+                            + "                                    <tbody class=\"trackTable\">\n");
+                    
+                    for (Sang sang : temp) {
+                        out.println("                                    <tr>\n"
+                                + "                                         <td>" + sang.getCdNumber() + "</td>\n"
+                                + "                                         <td>" + sang.getName() + "</td>\n"
+                                + "                                         <td>" + sang.getDuration() + "</td>\n"
+                                + "                                </tr>");            
+                    }
+                    
+                    out.println("                                    </tbody>\n"
+                            + "                                </table>\n"
+                            + "                            </div>\n"
+                            + "                        </div>\n"
+                            + "                    </div>"
                             + "                </div>\n"
                             + "            </div>\n");
                 }
             } catch (Exception e) {
             }
-                    out.println("    <div class=\"navbar\">\n"
+            out.println("    <div class=\"navbar\">\n"
                     + "        <ul>\n"
                     + "            <li><a href=\"addalbum\">Add Album</a></li>\n"
                     + "            <li><a href=\"delete\">Remove Album</a></li>\n"
