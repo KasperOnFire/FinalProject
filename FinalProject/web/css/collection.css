@@ -43,7 +43,7 @@ div.desc a {
     font-size: 16px;
 }
 
-.tracklist{
+.tracklist {
     border-radius: 10px;
 }
 
@@ -53,12 +53,12 @@ div.desc a {
 .modal {
     display: none;
     /* Hidden by default */
-    position: fixed;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    left: 0;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     /* Full width */
     height: 100%;
@@ -73,7 +73,7 @@ div.desc a {
     /* Fade in the background */
     -webkit-animation-duration: 0.4s;
     animation-name: fadeIn;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
 }
 
 
@@ -82,8 +82,9 @@ div.desc a {
 .modal-content {
     position: fixed;
     bottom: 0;
+    margin: auto;
     background-color: #fefefe;
-    width: 100%;
+    width: 50%;
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;

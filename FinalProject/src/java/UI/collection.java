@@ -67,7 +67,7 @@ public class collection extends HttpServlet {
                 ArrayList<Music> music = manageM.getAlbums(manageU.getUID((String) session.getAttribute("userLoggedIn")));
                 for (Music object : music) {
                     ArrayList<Sang> temp = JSON.getAlbum(object.getArtist(), object.getAlbum());
-                    
+
                     out.println("            <div class=\"img\">\n"
                             + "                <a target=\"_blank\" href=\"\" target=\"_blank\"><img src=\"img/placeholder.png\" class=\"albumImg\">\n"
                             + "                    <span class=\"albumSongs\"><span></span></span>\n"
@@ -75,7 +75,7 @@ public class collection extends HttpServlet {
                             + "                <div class=\"desc\">\n"
                             + "                    <a class=\"artistName\" href=\"error.html\" target=\"_blank\"><span class=\"artistSpan\">" + object.getArtist() + "</span></a><br>\n"
                             + "                    <a class=\"albumName\" href=\"\" target=\"_blank\"><span class=\"albumSpan\">" + object.getAlbum() + "</span></a><br>\n"
-                            + "                    <button class=\"tracklist btn-primary\">Tracklist</button>\n"
+                            + "                    <button class=\"tracklist btn-primary\">Tracklist</button> \n"
                             + "           <div id=\"myModal\" class=\"modal\">\n"
                             + "                        <div class=\"modal-content\">\n"
                             + "                            <div class=\"modal-header \">\n"
@@ -92,27 +92,29 @@ public class collection extends HttpServlet {
                             + "                                            <th>length</th>\n"
                             + "                                        </tr>\n"
                             + "                                    </thead>\n"
-                            + "                                    <tbody class=\"trackTable\">\n");
-                    
+                            + "                                    <tbody class=\"trackTable\">");
+
                     for (Sang sang : temp) {
                         out.println("                                    <tr>\n"
                                 + "                                         <td>" + sang.getCdNumber() + "</td>\n"
                                 + "                                         <td>" + sang.getName() + "</td>\n"
                                 + "                                         <td>" + sang.getDuration() + "</td>\n"
-                                + "                                </tr>");            
+                                + "                                </tr>");
                     }
-                    
+
                     out.println("                                    </tbody>\n"
                             + "                                </table>\n"
                             + "                            </div>\n"
                             + "                        </div>\n"
-                            + "                    </div>"
+                            + "                    </div>\n"
                             + "                </div>\n"
-                            + "            </div>\n");
+                            + "            </div>");
                 }
             } catch (Exception e) {
             }
-            out.println("    <div class=\"navbar\">\n"
+            out.println("       </div>\n"
+                    + " </div>\n"
+                    + "    <div class=\"navbar\">\n"
                     + "        <ul>\n"
                     + "            <li><a href=\"addalbum\">Add Album</a></li>\n"
                     + "            <li><a href=\"delete\">Remove Album</a></li>\n"

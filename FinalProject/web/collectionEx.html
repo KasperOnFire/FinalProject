@@ -10,8 +10,8 @@
     <title>MusicProject</title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/collection.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/collection.css">
 </head>
 
 <body>
@@ -23,14 +23,23 @@
         <div class="gallery">
             <h3><small class="totalAlbums">##</small> albums in your collection.</h3>
             <div class="img">
+                <a target="_blank" href="" target="_blank"><img src="img/placeholder.png" class="albumImg">
+                    <span class="albumSongs"><span></span></span>
+                </a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">Pink Floyd</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">Dark Side of the Moon</span></a><br>
+                </div>
+            </div>
+            <div class="img">
                 <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
                 <div class="desc">
-                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">placeholder</span></a><br>
-                    <a class="albumName" href="" target="_blank"><span class="albumSpan">placeholder</span></a><br>
-                    <button class="tracklist btn-primary">Tracklist</button>
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The xx</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I See You</span></a><br>
+                    <button class="tracklist backgroundcolorchange btn-primary">Tracklist</button>
                     <div id="myModal" class="modal">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header ">
                                 <span class="close">&times;</span>
                                 <h2 class="albumTitle">Album Title</h2>
                                 <h3 class="artistTitle">Artist name</h3>
@@ -45,11 +54,6 @@
                                         </tr>
                                     </thead>
                                     <tbody class="trackTable">
-                                        <tr>
-                                            <td>1</td>
-                                            <td>TestSong</td>
-                                            <td>2:48</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -57,12 +61,19 @@
                     </div>
                 </div>
             </div>
+            <div class="img">
+                <a target="_blank" href=""><img src="img/placeholder.png" class="albumImg"></a>
+                <div class="desc">
+                    <a class="artistName" href="error.html" target="_blank"><span class="artistSpan">The 1975</span></a><br>
+                    <a class="albumName" href="" target="_blank"><span class="albumSpan">I Like It When You Sleep, for You Are So Beautiful Yet So Unaware of It</span></a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="navbar">
         <ul>
             <li><a href="addalbum.html">Add Album</a></li>
-            <li><a href="deletealbum.html">Delete Album</a></li>
+            <li><a href="lolno">Remove Album</a></li>
             <li style="float:right"><a href="logout.html">Logout</a></li>
         </ul>
     </div>
