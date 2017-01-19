@@ -25,7 +25,6 @@ $(".img").each(function () {
     albumName = albumName.replace(/ /g, "+");
     var albumLink = artistLink + "/" + albumName;
     jQuery(this).find(".albumName").attr("href", albumLink);
-    jQuery(this).children("a").attr("href", albumLink);
 
     var apiKey = "3a8d6a8d0cb4132cacd967e9b9bae016";
     var apiLink = "http://ws.audioscrobbler.com/2.0/"
@@ -72,7 +71,7 @@ $.getJSON(jsonLink, function(data){
 
 
 var modal = document.getElementById('myModal');
-var btn = document.getElementsByClassName("tracklist")[0];
+var btn = document.getElementsByClassName("albumImg")[0];
 var span = document.getElementsByClassName("close")[0];
 btn.onclick = function () {
     modal.style.display = "block";
