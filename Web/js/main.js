@@ -40,29 +40,29 @@ $(".img").each(function () {
             if (albumString.length != 0) {
                 $imgLink.attr("src", albumString);
             }
+            var tracks = data.album.tracks.track;
+            var tracknumber = 1;
+            /*$.each(tracks, function () {
+                var json = JSON.parse(tracks);
+                var trackname = json.parse("name");
+                console.log(trackname);
+                var trackduration = tracks[i]["duration"];
+                $(".trackTable").append("<tr><td>" + tracknumber + "</td><td>" + trackname + "</td><td>" + trackduration + "</td></tr>")
+                tracknumber++;
+            })*/
         })
     }
+
+
+    $.getJSON(jsonLink, function (data) {
+
+    })
     i++;
 })
 
-$(function () {
-    var albumName = $(this).parent(".albumName").text;
-    var artistName = $(this).parent(".artistName").text;
-    var apiKey = "3a8d6a8d0cb4132cacd967e9b9bae016";
-    var apiLink = "http://ws.audioscrobbler.com/2.0/"
-    var jsonLink = apiLink + "?method=album.getinfo&api_key=" + apiKey + "&artist=" + artistName + "&album=" + albumName + "&autocorrect[1]&format=json";
-    $.getJSON(jsonLink, function (data) {
-        $.each(data.album.tracks.track, function () {
-            var i = 0;
-            var tracknumber = i + 1;
-            var trackname = tracks[i]["name"];
-            var trackduration = tracks[i]["duration"];
-            $(".trackTable").append("<tr><td>" + tracknumber + "</td><td>" + trackname + "</td><td>" + trackduration + "</td></tr>")
-            i++;
-        })
+$(".tracklist").click(function () {
 
 
-    })
 })
 
 

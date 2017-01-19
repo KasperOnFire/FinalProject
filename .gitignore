@@ -75,3 +75,4 @@ dist/
 nbdist/
 .nb-gradle/
 *.properties
+FinalProject/nbproject/private/private.xml
