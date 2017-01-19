@@ -3,6 +3,8 @@ package Collection;
 import Data.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManageMusic {
 
@@ -15,8 +17,13 @@ public class ManageMusic {
         }    
     }
     
-    public boolean addAlbum(int UID, String artist, String album) throws SQLException{
-        return DAO.addAlbum(UID, artist, album);
+    public boolean addAlbum(int UID, String artist, String album){
+        try {
+            return DAO.addAlbum(UID, artist, album);
+        } catch (SQLException ex) {
+            System.out.println("BLIN <.<");
+            return false;
+        }
     }
     
     public void removeAlbum(String identifier) throws SQLException{

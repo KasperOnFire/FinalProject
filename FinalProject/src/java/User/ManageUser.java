@@ -62,6 +62,7 @@ public class ManageUser {
         try {
             return DAO.getUIDByUserString(userString);
         } catch (Exception e) {
+            System.out.println("ManageUser : " + e);
         }
         return 0;
     }

@@ -36,7 +36,9 @@ public class addmusic extends HttpServlet {
             }
 
             try {
+                System.out.println("Nej");
                 manageM.addAlbum(manageU.getUID((String)session.getAttribute("userLoggedIn")), artist, album);
+                System.out.println("blin");
                 response.sendRedirect("collection");
             } catch (Exception e) {
                 System.out.println("BLIN Exception : " + e);

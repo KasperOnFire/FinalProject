@@ -7,11 +7,13 @@ import User.User;
 import User.Password;
 import Collection.Music;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataAccessObjectImpl implements DataAccessObject {
 
     private final DBConnector conn;
+    Statement stmtb;
     PreparedStatement stmt;
     Password pass = new Password();
 
@@ -36,7 +38,13 @@ public class DataAccessObjectImpl implements DataAccessObject {
 
                 user = new User(UID, usernameRetrieved, passwordRetrieved, saltRetrieved, emailRetrieved, userString);
             }
-        } catch (Exception e) {
+        } finally {
+            try {
+                if (stmt != null) {
+                    //stmt.close();
+                }
+            } catch (Exception e) {
+            }
         }
         return user;
     }
@@ -51,7 +59,13 @@ public class DataAccessObjectImpl implements DataAccessObject {
             if (rs.next()) {
                 UID = rs.getInt("UID");
             }
-        } catch (Exception e) {
+        } finally {
+            try {
+                if (stmt != null) {
+                    //stmt.close();
+                }
+            } catch (Exception e) {
+            }
         }
         return UID;
     }
@@ -71,7 +85,13 @@ public class DataAccessObjectImpl implements DataAccessObject {
                 music = new Music(UID, identifier, artist, album);
                 albumCollection.add(music);
             }
-        } catch (Exception e) {
+        } finally {
+            try {
+                if (stmt != null) {
+                    //stmt.close();
+                }
+            } catch (Exception e) {
+            }
         }
         albumCollection.sort((o1, o2) -> o1.getArtist().compareTo(o2.getArtist()));
         return albumCollection;
@@ -91,7 +111,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
         } finally {
             try {
                 if (stmt != null) {
-                    stmt.close();
+                    //stmt.close();
                 }
             } catch (Exception e) {
             }
@@ -99,23 +119,42 @@ public class DataAccessObjectImpl implements DataAccessObject {
     }
 
     @Override
-    public boolean addAlbum(int UID, String artist, String album) throws SQLException {
+    public boolean addAlbum(int UID, String artist, String album) {
+        String sql = "";
+        
         try {
-            stmt = conn.getConnection().prepareStatement("INSERT INTO music VALUES (?, ?, ?, ?)");
-            stmt.setString(1, getNewIdentifier());
-            stmt.setInt(2, UID);
-            stmt.setString(3, artist);
-            stmt.setString(4, album);
-            stmt.executeUpdate();
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (Exception e) {
-            }
+            stmtb = conn.getConnection().createStatement();
+            sql = "INSERT INTO music VALUES ('" + getNewIdentifier() + "','" + UID + "','" + artist + "','" + album + "')";
+        } catch (SQLException ex) {
+        }
+        try {
+            stmt.executeUpdate(sql);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return false;
+        
+//        System.out.println("b : ");
+//        try {
+//            System.out.println("BL");
+//            stmt = conn.getConnection().prepareStatement("INSERT INTO music VALUES (?, ?, ?, ?);");
+//            System.out.println("BLIN");
+//            stmt.setString(1, getNewIdentifier());
+//            System.out.println("BLIN BLIN");
+//            stmt.setInt(2, UID);
+//            System.out.println("BLIN BLIN BLIN");
+//            stmt.setString(3, artist);
+//            System.out.println("BLIN BLIN BLIN BLIN");
+//            stmt.setString(4, album);
+//            System.out.println("BLIN BLIN BLIN BLIN BLIN");
+//            stmt.executeUpdate();
+//            System.out.println("BLIN BLIN BLIN BLIN BLIN BLIN");
+//            return true;
+//        } catch (Exception e) {
+//            System.out.println("AddAlbum + " + e);
+//            return false;
+//        }
     }
 
     private boolean checkIdentifier(String identifier) throws SQLException {
@@ -123,10 +162,17 @@ public class DataAccessObjectImpl implements DataAccessObject {
             stmt = conn.getConnection().prepareStatement("SELECT * FROM music WHERE identifier = (?);");
             stmt.setString(1, identifier);
             ResultSet rs = stmt.executeQuery();
+            System.out.println("testing");
             return !rs.next();
-        } catch (Exception e) {
+        } finally {
+            try {
+                if (stmt != null) {
+                    //stmt.close();
+                }
+            } catch (Exception e) {
+                return false;
+            }
         }
-        return false;
     }
 
     private String getNewIdentifier() throws SQLException {
@@ -150,7 +196,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
         } finally {
             try {
                 if (stmt != null) {
-                    stmt.close();
+                    //stmt.close();
                 }
             } catch (Exception e) {
             }
