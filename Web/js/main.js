@@ -12,6 +12,7 @@ $(function () {
     var albums = $("div.img").length
     $("small.totalAlbums").replaceWith("<small>" + albums + "</small>");
 });
+
 $(".img").each(function () {
     var i = 0;
     var artistName = jQuery(this).find(".artistName")[i].text;
@@ -30,7 +31,7 @@ $(".img").each(function () {
     var apiKey = "3a8d6a8d0cb4132cacd967e9b9bae016";
     var apiLink = "http://ws.audioscrobbler.com/2.0/"
     var jsonLink = apiLink + "?method=album.getinfo&api_key=" + apiKey +
-            "&artist=" + artistName + "&album=" + albumName + "&autocorrect[1]&format=json";
+        "&artist=" + artistName + "&album=" + albumName + "&autocorrect[1]&format=json";
 
     var $imgLink = jQuery(this).find(".albumImg");
     if (albumName != "placeholder" && artistName != "placeholder") {
@@ -44,27 +45,24 @@ $(".img").each(function () {
     i++;
 })
 
-$(".tracklist").click(function(){
+$(function () {
     var albumName = $(this).parent(".albumName").text;
     var artistName = $(this).parent(".artistName").text;
     var apiKey = "3a8d6a8d0cb4132cacd967e9b9bae016";
     var apiLink = "http://ws.audioscrobbler.com/2.0/"
-    var jsonLink = apiLink + "?method=album.getinfo&api_key=" + apiKey +
-        "&artist=" + artistName + "&album=" + albumName + "&autocorrect[1]&format=json";
-$.getJSON(jsonLink, function(data){
-    var tracks = new Array();
-    tracks = data.tracks.track;
-        $.each(tracks, function(){
-        var i = 0;
-                var tracknumber = i + 1;
-                var trackname = tracks[i]["name"];
-                var trackduration = tracks[i]["duration"];
-                $(".trackTable").append("<tr><td>" + tracknumber + "</td><td>" + trackname + "</td><td>" + trackduration + "</td></tr>")
-                i++;
+    var jsonLink = apiLink + "?method=album.getinfo&api_key=" + apiKey + "&artist=" + artistName + "&album=" + albumName + "&autocorrect[1]&format=json";
+    $.getJSON(jsonLink, function (data) {
+        $.each(data.album.tracks.track, function () {
+            var i = 0;
+            var tracknumber = i + 1;
+            var trackname = tracks[i]["name"];
+            var trackduration = tracks[i]["duration"];
+            $(".trackTable").append("<tr><td>" + tracknumber + "</td><td>" + trackname + "</td><td>" + trackduration + "</td></tr>")
+            i++;
         })
 
 
-})
+    })
 })
 
 
