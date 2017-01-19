@@ -26,36 +26,14 @@
                 <p class="text-center">Username</p>
                 <input type="text" required="required" name="username" placeholder="Username" class="center-block"><br>
                 <p class="text-center">Password</p>
-                <input type="password" id="password" required="required" name="pw" placeholder="********" class="center-block"><br>
+                <input type="password" id="password1" required="required" name="pw" placeholder="********" class="center-block"><br>
                 <p class="text-center">Confim password</p>
-                <input type="password" id="password" required="required" name="pw2" placeholder="********" class="center-block"><br>
-                <input type="submit" name="register" value="Register!" class="btn btn-default center-block">
+                <input type="password" id="password2" required="required" name="pw2" placeholder="********" class="center-block" onChange="CheckPassword();"><br>
+                <input type="submit" name="register" value="Register!" id="bt1" class="btn btn-default center-block" disabled>
             </form>
         </div>
     </div>
-    <script src="js/main.js"></script>
-    <script>
-        function check(input) {
-            if (input.value != document.getElementById('password').value) {
-                input.setCustomValidity('Password Must be Matching.');
-            } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
-            }
-        }
-    </script>
-    <script>
-        var currentColor;
-
-        function changeColor() {
-            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',
-                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'
-            ];
-            var randNumb = Math.floor(Math.random() * colors.length);
-            currentColor = colors[randNumb];
-            document.getElementsByClassName("main-header").style["color"] = currentColor;
-        }
-    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/password.js"></script>
 </body>
-
 </html>

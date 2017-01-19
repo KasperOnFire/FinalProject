@@ -12,6 +12,7 @@ import Collection.ManageMusic;
 import User.RegUser;
 import User.User;
 import User.ManageUser;
+import exception.errorException;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "registeruser", urlPatterns = {"/registeruser"})
@@ -25,6 +26,7 @@ public class registeruser extends HttpServlet {
     private String username;
     private String password;
     private String email;
+    private String errorCode;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,13 +47,14 @@ public class registeruser extends HttpServlet {
                         session.setAttribute("loggedIn", true);
                         session.setAttribute("userLoggedIn", user.getUserString());
                     }
-                    
-                    response.sendRedirect("collection.html");
+                    response.sendRedirect("collection");
                 } else {
-                    out.println("<h1>Username already taken! Fix this with javascript!</h1>");
+                    throw new errorException("Username already taken!");
                 }
-            } catch (Exception e) {
-                out.println("Somethings wrong! : " + e);
+            } catch (errorException e) {
+                    errorCode = e.getMessage();
+                    request.setAttribute("errorCode", errorCode);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
             }
         }
     }

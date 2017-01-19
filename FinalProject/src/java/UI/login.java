@@ -54,7 +54,7 @@ public class login extends HttpServlet {
                     }else{
                         throw new errorException("Wrong username or password!");
                     }
-                } catch (Exception e) {
+                } catch (errorException e) {
                     errorCode = e.getMessage();
                     request.setAttribute("errorCode", errorCode);
                     request.getRequestDispatcher("error.jsp").forward(request, response);

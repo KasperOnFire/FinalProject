@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package UI;
 
 import java.io.IOException;
@@ -7,26 +12,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "index", urlPatterns = {"/index"})
-public class index extends HttpServlet {
+/**
+ *
+ * @author david
+ */
+@WebServlet(name = "register", urlPatterns = {"/register"})
+public class register extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            HttpSession session = request.getSession();
-            
-            if(session.getAttribute("loggedIn") == null){
-                session.setAttribute("loggedIn", false);
-            }else{
-                if((boolean)session.getAttribute("loggedIn")){
-                    response.sendRedirect("collection");
-                }
-            }
-            
             out.println("<!DOCTYPE html>\n"
                     + "<html lang=\"en\">\n"
                     + "\n"
@@ -34,7 +40,7 @@ public class index extends HttpServlet {
                     + "    <meta charset=\"utf-8\">\n"
                     + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\n"
                     + "    <meta name=\"description\" content=\"Final Project\">\n"
-                    + "    <meta name=\"author\" content=\"Tjalfe Møller, David Carl & Kasper Ravn Breindal\">\n"
+                    + "    <meta name=\"author\" content=\" Tjalfe Møller, David Carl & Kasper Ravn Breindal\">\n"
                     + "    <link rel=\"icon\" href=\"img/favicon.png\">\n"
                     + "    <title>MusicProject</title>\n"
                     + "    <!-- Bootstrap core CSS -->\n"
@@ -48,51 +54,23 @@ public class index extends HttpServlet {
                     + "            <h1 class=\"text-center main-header\">YourMusic!</h1>\n"
                     + "            <h2 class=\"text-center\"> for managing anything!</h2>\n"
                     + "        </div>\n"
-                    + "        <div class=\"fancy\">\n"
-                    + "            <p class=\"fancylead\">Manage your <span class=\"typer\"></span> collection.</p>\n"
-                    + "        </div>\n"
                     + "        <div class=\"login\">\n"
-                    + "            <form action=\"login\" method=\"POST\">\n"
+                    + "            <form action=\"registeruser\" method=\"POST\">\n"
+                    + "                <p class=\"text-center\">Email</p>\n"
+                    + "                <input type=\"text\" required=\"required\" name=\"email\" placeholder=\"text@example.com\" class=\"center-block\"><br>\n"
                     + "                <p class=\"text-center\">Username</p>\n"
-                    + "                <input type=\"text\" name=\"username\" placeholder=\"coolguy112\" class=\"center-block\"><br>\n"
+                    + "                <input type=\"text\" required=\"required\" name=\"username\" placeholder=\"Username\" class=\"center-block\"><br>\n"
                     + "                <p class=\"text-center\">Password</p>\n"
-                    + "                <input type=\"password\" name=\"pw\" placeholder=\"********\" class=\"center-block\"><br>\n"
-                    + "                <input type=\"submit\" name=\"Login!\" value=\"login\" class=\"btn btn-default center-block\">\n"
+                    + "                <input type=\"password\" id=\"password1\" required=\"required\" name=\"pw\" placeholder=\"********\" class=\"center-block\"><br>\n"
+                    + "                <p class=\"text-center\">Confim password</p>\n"
+                    + "                <input type=\"password\" id=\"password2\" required=\"required\" name=\"pw2\" placeholder=\"********\" class=\"center-block\" onChange=\"CheckPassword();\"><br>\n"
+                    + "                <input type=\"submit\" name=\"register\" value=\"Register!\" id=\"bt1\" class=\"btn btn-default center-block\" disabled>\n"
                     + "            </form>\n"
-                    + "            <a href=\"register\" class=\"text-center register\">Not a user? Register here!</a>\n"
-                    + "            <a href=\"forgot.html\" class=\"text-center forgot\">Forgot your password?</a>\n"
                     + "        </div>\n"
                     + "    </div>\n"
-                    + "    <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n"
-                    + "    <script src=\"js/jquery-3.1.1.min.js\"></script>\n"
-                    + "    <script src=\"js\\typed.js\\js\\typed.js\"></script>\n"
-                    + "    <script src=\"js/main.js\">\n"
-                    + "    </script>\n"
-                    + "    <script>\n"
-                    + "        $(function () {\n"
-                    + "            $(\".typer\").typed({\n"
-                    + "                strings: [\"cd\", \"movie\", \"vinyl\", \"anything\"],\n"
-                    + "                typeSpeed: 50,\n"
-                    + "                showCursor: 1,\n"
-                    + "                startDelay: 500,\n"
-                    + "                backDelay: 1000\n"
-                    + "            });\n"
-                    + "        });\n"
-                    + "    </script>\n"
-                    + "    <script>\n"
-                    + "        var currentColor;\n"
-                    + "\n"
-                    + "        function changeColor() {\n"
-                    + "            var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4',\n"
-                    + "                '#009688', '#4CAF50', '#8BC34A', '#FF9800', '#FF5722'\n"
-                    + "            ];\n"
-                    + "            var randNumb = Math.floor(Math.random() * colors.length);\n"
-                    + "            currentColor = colors[randNumb];\n"
-                    + "            document.getElementsByClassName(\"main-header\").style[\"color\"] = currentColor;\n"
-                    + "        }\n"
-                    + "    </script>\n"
+                    + "    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js\"></script>\n"
+                    + "    <script src=\"js/password.js\"></script>\n"
                     + "</body>\n"
-                    + "\n"
                     + "</html>");
         }
     }

@@ -31,7 +31,11 @@ public class RegUser {
         }
     }
     
-    public boolean usernameTaken(String username) throws SQLException{
-        return DAO.getUserByName(username) == null;
+    public boolean usernameTaken(String username){
+        try {
+            return DAO.getUserByName(username) == null;
+        } catch (Exception e) {
+            return false;
+        }
     }    
 }
