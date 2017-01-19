@@ -12,6 +12,7 @@
        var albums = $("div.img").length
        $("small.totalAlbums").replaceWith("<small>" + albums + "</small>");
    });
+
    $(".img").each(function () {
        var i = 0;
        var artistName = jQuery(this).find(".artistName")[i].text;
