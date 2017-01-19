@@ -9,8 +9,8 @@ package exception;
  *
  * @author david
  */
-public class IncorrectLogin extends Exception{
-    public IncorrectLogin(String string) {
+public class errorException extends Exception{
+    public errorException(String string) {
         super(string);
     }
 }

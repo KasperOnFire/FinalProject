@@ -2,7 +2,7 @@ package UI;
 
 import User.User;
 import User.ManageUser;
-import exception.IncorrectLogin;
+import exception.errorException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -22,7 +22,8 @@ public class login extends HttpServlet {
 
     private String username;
     private String password;
-
+    private String errorCode;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -52,11 +53,15 @@ public class login extends HttpServlet {
                         response.sendRedirect("collection");
                     }else{
                         response.sendRedirect("error.html");
-                        throw new IncorrectLogin("Wrong username or password!");
+                        throw new errorException("Wrong username or password!");
                     }
                 } catch (Exception e) {
-                    System.out.println("Can't login! : " + e);
+                    errorCode = e.getMessage();
+                    request.setAttribute("errorCode", errorCode);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
+                
+                
             }
         }
     }
