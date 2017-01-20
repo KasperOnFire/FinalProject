@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "register", urlPatterns = {"/register"})
 public class register extends HttpServlet {
@@ -14,6 +15,19 @@ public class register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("loggedIn") != null) {
+            if ((boolean) session.getAttribute("loggedIn")) {
+                response.sendRedirect("index");
+            } else {
+                System.out.println("User isnt logged in!");
+            }
+        } else {
+            response.sendRedirect("index");
+        }
+
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>\n"
                     + "<html lang=\"en\">\n"

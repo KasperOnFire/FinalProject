@@ -35,8 +35,8 @@ public class ManageUserTest {
     public void testTrueLogin() throws Exception {
         System.out.println("loginTrue");
 
-        String username = "test2";
-        String password = "test2";
+        String username = "Junit";
+        String password = "JunitTest";
         
         ManageUser instance = new ManageUser();
         boolean expResult = true;
@@ -49,8 +49,8 @@ public class ManageUserTest {
     public void testFalseLogin() throws Exception {
         System.out.println("loginFalse");
 
-        String username = "test2";
-        String password = "test21";
+        String username = "Junit";
+        String password = "Junittest";
         
         ManageUser instance = new ManageUser();
         boolean expResult = false;
@@ -66,8 +66,8 @@ public class ManageUserTest {
     public void testGetUser() throws Exception {
         System.out.println("getUser");
 
-        String username = "test2";
-        String userString = "TRITT7OSQF2GWW0GDK";
+        String username = "Junit";
+        String userString = "4QDCZNVKEGB4DIFYEY";
 
         ManageUser instance = new ManageUser();
         String expResult = userString;
@@ -81,9 +81,9 @@ public class ManageUserTest {
     @Test
     public void testGetUID() {
         System.out.println("getUID");
-        String userString = "TRITT7OSQF2GWW0GDK";
+        String userString = "4QDCZNVKEGB4DIFYEY";
         ManageUser instance = new ManageUser();
-        int expResult = 3;
+        int expResult = 1;
         int result = instance.getUID(userString);
         assertEquals(expResult, result);
     }

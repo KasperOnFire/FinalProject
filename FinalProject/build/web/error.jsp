@@ -23,8 +23,8 @@
                 <p class="fancylead">Manage your <span class="typer"></span> collection.</p>
             </div>
             <div class="login">
-                <p class="text-center">${errorCode}</p>
-                <a class="text-center" href='index'>Click here to go to homepage!</a>
+                <p class="text-center" style="font-size: 46px;">${errorCode}</p>
+                <a class="text-center" href='index' style="font-size: 36px;">Click here to go to homepage!</a>
             </div>
         </div>
         <script src="bootstrap/js/bootstrap.min.js"></script>

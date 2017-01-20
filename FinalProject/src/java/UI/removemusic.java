@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "removemusic", urlPatterns = {"/removemusic"})
 public class removemusic extends HttpServlet {
@@ -19,6 +20,18 @@ public class removemusic extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+            HttpSession session = request.getSession();
+
+            if (session.getAttribute("loggedIn") != null) {
+                if ((boolean) session.getAttribute("loggedIn")) {
+                    System.out.println("User is logged in!");
+                } else {
+                    response.sendRedirect("index");
+                }
+            } else {
+                response.sendRedirect("index");
+            }
 
             try {
                 identifier = request.getParameter("identifier");

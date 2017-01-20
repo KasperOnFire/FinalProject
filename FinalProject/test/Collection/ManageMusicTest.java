@@ -35,7 +35,7 @@ public class ManageMusicTest {
     @Test
     public void testAddAlbum() throws Exception {
         System.out.println("addAlbum");
-        int UID = 3;
+        int UID = 1;
         String artist = "jUnit";
         String album = "jUnit";
         ManageMusic instance = new ManageMusic();
@@ -51,10 +51,10 @@ public class ManageMusicTest {
     public void testRemoveAlbum() throws Exception {
         ManageMusic instance = new ManageMusic();
         System.out.println("removeAlbum");
-        String identifier = instance.getAlbums(3).get(0).getIdentifier();
+        String identifier = instance.getAlbums(1).get(0).getIdentifier();
         System.out.println("Identifier : " + identifier);
         instance.removeAlbum(identifier);
-        assertEquals(1, instance.getAlbums(3).size());
+        assertEquals(0, instance.getAlbums(1).size());
     }
 
     /**
@@ -65,6 +65,6 @@ public class ManageMusicTest {
         System.out.println("getAlbums");
         ManageMusic instance = new ManageMusic();
         ArrayList<Music> result = instance.getAlbums(1);
-        assertEquals(0, result.size());
+        assertEquals(1, result.size());
     }    
 }
