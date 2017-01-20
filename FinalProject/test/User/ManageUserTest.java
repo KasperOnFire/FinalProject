@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package User;
 
 import org.junit.After;
@@ -12,10 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author david
- */
 public class ManageUserTest {
     
     public ManageUserTest() {
@@ -41,14 +32,29 @@ public class ManageUserTest {
      * Test of login method, of class ManageUser.
      */
     @Test
-    public void testLogin() throws Exception {
-        System.out.println("login");
+    public void testTrueLogin() throws Exception {
+        System.out.println("loginTrue");
 
         String username = "test2";
         String password = "test2";
         
         ManageUser instance = new ManageUser();
+        boolean expResult = true;
+        instance.login(username, password);
+        boolean result = instance.isLoggedIn();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testFalseLogin() throws Exception {
+        System.out.println("loginFalse");
+
+        String username = "test2";
+        String password = "test21";
+        
+        ManageUser instance = new ManageUser();
         boolean expResult = false;
+        instance.login(username, password);
         boolean result = instance.isLoggedIn();
         assertEquals(expResult, result);
     }

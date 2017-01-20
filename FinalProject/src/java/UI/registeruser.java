@@ -22,7 +22,6 @@ public class registeruser extends HttpServlet {
     RegUser reguser = new RegUser();
     ManageMusic am = new ManageMusic();
 
-    private boolean userAdded;
     private String username;
     private String password;
     private String email;
@@ -41,7 +40,7 @@ public class registeruser extends HttpServlet {
                 email = request.getParameter("email");
                 if (reguser.usernameTaken(username)) {
                     reguser.addUser(username, password, email);
-                    
+
                     User user = validate.login(username, password);
                     if (user != null) {
                         session.setAttribute("loggedIn", true);
@@ -52,9 +51,11 @@ public class registeruser extends HttpServlet {
                     throw new errorException("Username already taken!");
                 }
             } catch (errorException e) {
-                    errorCode = e.getMessage();
-                    request.setAttribute("errorCode", errorCode);
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                System.out.println("ERROR RegisterUser:");
+                e.printStackTrace();
+                errorCode = e.getMessage();
+                request.setAttribute("errorCode", errorCode);
+                request.getRequestDispatcher("error.jsp").forward(request, response);
             }
         }
     }

@@ -2,19 +2,16 @@ package Collection;
 
 public class Music {
 
-    private int UID;
     private String identifier;
     private String artist;
     private String album;
 
-    public Music(int UID, String artist, String album) {
-        this.UID = UID;
+    public Music(String artist, String album) {
         this.artist = artist;
         this.album = album;
     }
 
-    public Music(int UID, String identifier, String artist, String album) {
-        this.UID = UID;
+    public Music(String identifier, String artist, String album) {
         this.identifier = identifier;
         this.artist = artist;
         this.album = album;

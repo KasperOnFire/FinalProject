@@ -9,10 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- *
- * @author Tjalfe
- */
 public class JSONreader {
 
     private String apiLink = "http://ws.audioscrobbler.com/2.0/";
@@ -34,12 +30,13 @@ public class JSONreader {
             br = new BufferedReader(new InputStreamReader(is));
 
             while ((line = br.readLine()) != null) {
-                //System.out.println(line);
                 json += line;
             }
         } catch (MalformedURLException mue) {
+            System.out.println("ERROR JSONReader 1:");
             mue.printStackTrace();
         } catch (IOException ioe) {
+            System.out.println("ERROR JSONReader 2:");
             ioe.printStackTrace();
         } finally {
             try {
@@ -47,7 +44,8 @@ public class JSONreader {
                     is.close();
                 }
             } catch (IOException ioe) {
-                // nothing to see here
+                System.out.println("ERROR JSONReader 3:");
+                ioe.printStackTrace();
             }
         }
         return json;
@@ -68,7 +66,8 @@ public class JSONreader {
                 i++;
             }
         } catch (Exception e) {
-            // nothing to see here
+            System.out.println("ERROR JSONReader 4:");
+            e.printStackTrace();
         }
         return album;
     }

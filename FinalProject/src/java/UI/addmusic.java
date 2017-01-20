@@ -33,19 +33,19 @@ public class addmusic extends HttpServlet {
                 album = request.getParameter("album");
                 System.out.println("artist : " + artist + " : album : " + album);
             } catch (Exception e) {
+                System.out.println("ERROR AddMusic 2:");
+                e.printStackTrace();
             }
 
             try {
-                System.out.println("Nej");
-                manageM.addAlbum(manageU.getUID((String)session.getAttribute("userLoggedIn")), artist, album);
-                System.out.println("blin");
+                manageM.addAlbum(manageU.getUID((String) session.getAttribute("userLoggedIn")), artist, album);
                 response.sendRedirect("collection");
             } catch (Exception e) {
-                System.out.println("BLIN Exception : " + e);
+                System.out.println("ERROR AddMusic 1:");
+                e.printStackTrace();
             }
         }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

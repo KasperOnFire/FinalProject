@@ -1,27 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UI;
 
 import Collection.ManageMusic;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author david
- */
 @WebServlet(name = "removemusic", urlPatterns = {"/removemusic"})
 public class removemusic extends HttpServlet {
-    
+
     ManageMusic manage = new ManageMusic();
     private String identifier;
 
@@ -33,12 +23,16 @@ public class removemusic extends HttpServlet {
             try {
                 identifier = request.getParameter("identifier");
             } catch (Exception e) {
+                System.out.println("ERROR RemoveMusic 1:");
+                e.printStackTrace();
             }
-            
+
             try {
                 manage.removeAlbum(identifier);
                 response.sendRedirect("delete");
             } catch (Exception e) {
+                System.out.println("ERROR RemoveMusic 2:");
+                e.printStackTrace();
             }
         }
     }

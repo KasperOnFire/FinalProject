@@ -111,6 +111,8 @@ public class collection extends HttpServlet {
                             + "            </div>");
                 }
             } catch (Exception e) {
+                System.out.println("ERROR Collection:");
+                e.printStackTrace();
             }
             out.println("       </div>\n"
                     + " </div>\n"

@@ -1,7 +1,5 @@
 package User;
 
-
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -37,7 +35,8 @@ public class Password {
              generatedPassword = sb.toString();
             } 
            catch (NoSuchAlgorithmException e){
-               System.out.println("ERROR IN GENPASS : " + e);
+               System.out.println("ERROR Password 1:");
+               e.printStackTrace();
            }
         return generatedPassword;
     }

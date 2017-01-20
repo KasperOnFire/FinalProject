@@ -11,18 +11,18 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "logout", urlPatterns = {"/logout"})
 public class logout extends HttpServlet {
 
-    private boolean setFalse = false;
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
 
-        try{
+        try {
             session.invalidate();
             session.setAttribute("loggedIn", false);
             response.sendRedirect("index");
-        }catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
+            System.out.println("ERROR Logout:");
+            e.printStackTrace();
             response.sendRedirect("index");
         }
     }

@@ -10,32 +10,29 @@ public class RegUser {
 
     public RegUser() {
         try {
-            System.out.println("DAO = NEW");
             DAO = new DataAccessObjectImpl();
-            System.out.println("DAO = OLD");
         } catch (Exception e) {
-            System.out.println("Blin : " + e);
+            System.out.println("ERROR RegUser 1:");
+            e.printStackTrace();
         }
     }
-      
 
-    
-    public void addUser(String username, String password, String email) throws UnsupportedEncodingException{
-        System.out.println("Test1");
+    public void addUser(String username, String password, String email) throws UnsupportedEncodingException {
         try {
-            System.out.println("Test2");
             DAO.registerUser(username, password, email);
-            System.out.println("Test3");
         } catch (UnsupportedEncodingException | SQLException e) {
-            System.out.println("ERROR IN RegUser : " + e);
+            System.out.println("ERRORRegUser 2:");
+            e.printStackTrace();
         }
     }
-    
-    public boolean usernameTaken(String username){
+
+    public boolean usernameTaken(String username) {
         try {
             return DAO.getUserByName(username) == null;
         } catch (Exception e) {
+            System.out.println("ERROR ManageMusic 3:");
+            e.printStackTrace();
             return false;
         }
-    }    
+    }
 }

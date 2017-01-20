@@ -3,8 +3,6 @@ package Collection;
 import Data.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ManageMusic {
 
@@ -14,6 +12,8 @@ public class ManageMusic {
         try {
             DAO = new DataAccessObjectImpl();
         } catch (Exception ex) {
+            System.out.println("ERROR ManageMusic 1:");
+            ex.printStackTrace();
         }    
     }
     
@@ -21,7 +21,8 @@ public class ManageMusic {
         try {
             return DAO.addAlbum(UID, artist, album);
         } catch (SQLException ex) {
-            System.out.println("BLIN <.<");
+            System.out.println("ERROR ManageMusic 2:");
+            ex.printStackTrace();
             return false;
         }
     }

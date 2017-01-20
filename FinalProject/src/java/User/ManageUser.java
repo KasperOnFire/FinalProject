@@ -1,9 +1,6 @@
 package User;
 
 import Data.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 public class ManageUser {
@@ -14,12 +11,14 @@ public class ManageUser {
 
     private boolean loggedIn;
     private String hashedPassword;
-    private boolean debug = true;
+    private boolean debug = false;
 
     public ManageUser() {
         try {
             DAO = new DataAccessObjectImpl();
         } catch (Exception ex) {
+            System.out.println("ERROR ManageUser 1:");
+            ex.printStackTrace();
         }
     }
 
@@ -27,18 +26,21 @@ public class ManageUser {
         try {
             user = DAO.getUserByName(username);
         } catch (Exception e) {
-            System.out.println("user not collected!");
+            System.out.println("ERROR ManageUser 2:");
+            e.printStackTrace();
         }
         loggedIn = false;
 
         try {
             hashedPassword = pass.get_SHA_512_SecurePassword(password, user.getPasswordSalt());
         } catch (Exception e) {
+            System.out.println("ERROR ManageUser 3:");
+            e.printStackTrace();
         }
         if (user != null) {
             if (hashedPassword.equals(user.getPassword())) {
                 if (debug == true) {
-                    System.out.println("User logged in: " + user.getUsername() + " <br>With the following password: " + user.getPassword() + " <br>And the following salt: " + user.getPasswordSalt());
+                    System.out.println("User logged in: " + user.getUsername() + " With the following password: " + user.getPassword() + " And the following salt: " + user.getPasswordSalt());
                     System.out.println("UID: " + user.getUID());
                 } else {
                     System.out.println("User logged in: " + user.getUsername());
@@ -48,7 +50,7 @@ public class ManageUser {
             } else {
                 return null;
             }
-        }else{
+        } else {
             return null;
         }
     }
@@ -62,7 +64,8 @@ public class ManageUser {
         try {
             return DAO.getUIDByUserString(userString);
         } catch (Exception e) {
-            System.out.println("ManageUser : " + e);
+            System.out.println("ERROR ManageUser 4:");
+            e.printStackTrace();
         }
         return 0;
     }

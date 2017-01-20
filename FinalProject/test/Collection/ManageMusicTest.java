@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Collection;
 
 import java.util.ArrayList;
@@ -13,10 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author david
- */
 public class ManageMusicTest {
     
     public ManageMusicTest() {
@@ -44,7 +35,7 @@ public class ManageMusicTest {
     @Test
     public void testAddAlbum() throws Exception {
         System.out.println("addAlbum");
-        int UID = 3;
+        int UID = 1;
         String artist = "jUnit";
         String album = "jUnit";
         ManageMusic instance = new ManageMusic();
@@ -60,10 +51,10 @@ public class ManageMusicTest {
     public void testRemoveAlbum() throws Exception {
         ManageMusic instance = new ManageMusic();
         System.out.println("removeAlbum");
-        String identifier = instance.getAlbums(3).get(0).getIdentifier();
+        String identifier = instance.getAlbums(1).get(0).getIdentifier();
         System.out.println("Identifier : " + identifier);
         instance.removeAlbum(identifier);
-        assertEquals(0, instance.getAlbums(3).size());
+        assertEquals(0, instance.getAlbums(1).size());
     }
 
     /**
@@ -72,10 +63,8 @@ public class ManageMusicTest {
     @Test
     public void testGetAlbums() throws Exception {
         System.out.println("getAlbums");
-        int UID = 3;
         ManageMusic instance = new ManageMusic();
-        ArrayList<Music> expResult = null;
-        ArrayList<Music> result = instance.getAlbums(3);
+        ArrayList<Music> result = instance.getAlbums(1);
         assertEquals(1, result.size());
     }    
 }

@@ -82,6 +82,8 @@ public class delete extends HttpServlet {
                             + "</td>\n");
                 }
             } catch (Exception e) {
+                System.out.println("ERROR Delete:");
+                e.printStackTrace();
             }
             out.println("                </tbody>\n"
                     + "            </table>\n"
@@ -104,7 +106,6 @@ public class delete extends HttpServlet {
                     + "</html>");
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -143,5 +144,4 @@ public class delete extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

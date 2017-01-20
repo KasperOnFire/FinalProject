@@ -23,7 +23,7 @@ public class login extends HttpServlet {
     private String username;
     private String password;
     private String errorCode;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,33 +34,35 @@ public class login extends HttpServlet {
             username = request.getParameter("username");
             password = request.getParameter("pw");
         } catch (Exception e) {
-            System.out.println("ERROR LOGIN : " + e);
+            System.out.println("ERROR Login 1:");
+            e.printStackTrace();
         }
 
         try (PrintWriter out = response.getWriter()) {
             if (session.getAttribute("loggedIn") == null) {
                 session.setAttribute("loggedIn", false);
             }
-            
+
             if ((boolean) session.getAttribute("loggedIn")) {
                 response.sendRedirect("collection");
             } else {
                 try {
                     User user = validate.login(username, password);
-                    if(user != null){
+                    if (user != null) {
                         session.setAttribute("loggedIn", true);
-                        session.setAttribute("userLoggedIn", user.getUserString());                        
+                        session.setAttribute("userLoggedIn", user.getUserString());
                         response.sendRedirect("collection");
-                    }else{
+                    } else {
                         throw new errorException("Wrong username or password!");
                     }
                 } catch (errorException e) {
+                    System.out.println("ERROR Login 2:");
+                    e.printStackTrace();
                     errorCode = e.getMessage();
                     request.setAttribute("errorCode", errorCode);
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
-                
-                
+
             }
         }
     }

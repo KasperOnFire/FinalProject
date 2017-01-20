@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
     public class DBConnector {
         private Connection connection = null;
 
-        //Constants
         private static final String IP	     = "localhost";
         private static final int    PORT     = 3306;
         public static final String DATABASE  = "collection";
