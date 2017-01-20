@@ -47,6 +47,11 @@ div.desc a {
     border-radius: 10px;
 }
 
+h2 {
+    color: white;
+    font-size: 35px;
+}
+
 
 /* The Modal (background) */
 
@@ -79,6 +84,10 @@ div.desc a {
 
 /* Modal Content */
 
+.modal-header{
+    text-align: center;
+}
+
 .modal-content {
     position: fixed;
     bottom: 0;
@@ -89,6 +98,10 @@ div.desc a {
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
     animation-duration: 0.4s
+}
+
+.modal-body{
+    text-align: left;
 }
 
 

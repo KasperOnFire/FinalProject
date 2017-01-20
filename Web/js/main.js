@@ -90,4 +90,7 @@ var randNumb = Math.floor(Math.random() * colors.length);
 var newColor = colors[randNumb];
 $(function () {
     $(".changecolor").css("color", newColor);
+    $(".modal-header").css("background-color", newColor);
+    $(".modal-header").css("color", newColor);
+    $(".modal-footer").css("background-color", newColor);
 })
