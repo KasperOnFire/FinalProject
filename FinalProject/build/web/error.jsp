@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
     <head>
         <meta charset="utf-8">
@@ -11,7 +11,6 @@
         <title>MusicProject</title>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/error.css">
     </head>
 
     <body>
@@ -23,14 +22,9 @@
             <div class="fancy">
                 <p class="fancylead">Manage your <span class="typer"></span> collection.</p>
             </div>
-            <div class="introMessage">
-                <h1>ERROR</h1>
-            </div>
-            <div class="menu">
-                <a href='index'>Click here to go to homepage!</a>
-            </div>
-            <div class="content">
-                <p>${errorCode}</p>
+            <div class="login">
+                <p class="text-center">${errorCode}</p>
+                <a class="text-center" href='index'>Click here to go to homepage!</a>
             </div>
         </div>
         <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -39,4 +33,4 @@
         <script src="js/main.js"></script>
     </body>
 
-</html>
+    </html>

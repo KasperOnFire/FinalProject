@@ -54,7 +54,7 @@ public class ManageMusicTest {
         String identifier = instance.getAlbums(3).get(0).getIdentifier();
         System.out.println("Identifier : " + identifier);
         instance.removeAlbum(identifier);
-        assertEquals(0, instance.getAlbums(3).size());
+        assertEquals(1, instance.getAlbums(3).size());
     }
 
     /**
@@ -65,6 +65,6 @@ public class ManageMusicTest {
         System.out.println("getAlbums");
         ManageMusic instance = new ManageMusic();
         ArrayList<Music> result = instance.getAlbums(1);
-        assertEquals(3, result.size());
+        assertEquals(0, result.size());
     }    
 }

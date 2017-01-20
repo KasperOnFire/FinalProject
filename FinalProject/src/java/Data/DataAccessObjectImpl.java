@@ -135,6 +135,7 @@ public class DataAccessObjectImpl implements DataAccessObject {
             try {
                 if (stmt != null) {
                     stmt.close();
+                    return true;
                 }
             } catch (Exception e) {
             }
